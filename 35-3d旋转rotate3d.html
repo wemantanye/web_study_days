@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 500px;
+        }
+
+        img {
+            display: block;
+            margin: 100px auto;
+            transition: all 1s;
+        }
+
+        img:hover {
+            /* 3D旋转指可以让元素在三维平面内沿着x轴,y轴，z轴或者自定义轴进行旋转。 */
+            /* 元素在三维平面沿着x轴旋转 */
+            /* transform: rotateX(360deg); */
+            /* 元素在三维平面沿着y轴旋转 */
+            /* transform: rotateY(360deg); */
+            /* 元素在三维平面沿着Z轴旋转 */
+            /* transform: rotateZ(180deg); */
+            /* 语法 transform: rotate3d(x,y,z,deg); */
+            transform: rotate3d(1,0,0,45deg);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="image/御.jpg" alt="">
+    </div>
+</body>
+</html>

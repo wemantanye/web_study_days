@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='jquery.min.js'></script>
+    <!-- <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style> -->
+</head>
+<body>
+    <!-- jquery的基本使用 -->
+    <!-- <script>
+        // 1. 等著頁面DOM加載完了之後再去執行js代碼
+        // $(document).ready(function(){
+        //     $('div').hide();
+        // })
+        // 2. 等著頁面dom加載完畢再去執行js 代碼
+        $(function() {
+            $('div').hide();
+        }
+    </script>
+    <div></div> -->
+
+    <!-- dom对象和jquery对象 -->
+    <!-- <div></div>
+    <span></span>
+    <script>
+        // 1. DOM对象: 用原生js获取过来的对象就是DOM对象
+        var myDiv = document.querySelector('div');
+        var mySpan = document.querySelector('span');
+        console.dir(myDiv);
+        // 2. jQuery对象: 用jquery方式获取过来的对象是jquery对象，本质上是通过$把DOM元素进行了包装
+        $('div'); // $('div') 是一个jquery对象
+        console.dir($('div'));
+        // 3. jquery对象只能使用jquery方法，dom对象则使用原生的javascript属性和方法
+    </script> -->
+
+    <!-- dom对象和jquery对象转换
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <div></div>
+    <script>
+        // 我们直接获取div,得到的就是jquery对象
+        // $('div');
+        // 1. dom对象转换为jquery对象
+        // 原生js获取dom对象,只需要通过$包装成jquery对象
+        var div = document.querySelector('div');
+        // $(div).hide();
+        // 2. jquery对象转换为dom对象
+        $('div')[0].方法() // 第一种方式
+        $('div').get(0).方法() // 第二种方式
+    </script> -->
+
+    <!-- 选取父子元素 -->
+    <!-- <div class="yeye">
+        <div class="father">
+            <div class="son">儿子</div>
+        </div>
+    </div>
+    <div class="nav">
+        <p>123</p>
+        <div>
+            <p>我是p</p>
+            <p>我是p2</p>
+            <p>我是p3</p>
+        </div>
+    </div>
+    <div class="current">我有current</div>
+    <div>我没有current</div>
+    <script>
+        $(function() {
+            // 1.父 parent()
+            console.log($(".son").parent());
+            // 2.子 
+            // (1) 亲儿子 children() 
+            $(".nav").children("p").css("color","red");
+            // (2) find() 可以选里面所有的孩子 包括儿子和孙子
+            $(".nav").find("p").css("color","red");
+            // 3.兄
+            // sibings() 查找兄弟节点，不包括自己本身的所有亲兄弟
+            $(".yeye").siblings("div").css("color","red");  // 不包括自己的兄弟节点那就是nav中的div
+            // 4.第n个元素  eq(index) 方法 获取索引号为index的元素  推荐这种写法
+            $(".nav div p").eq(2).css("color","blue");
+            // 5. 判断是否有每个类名   hasClass()方法是验证类名是否正确的方式 返回布尔值 正确true 不正确false
+            console.log($("div:last").hasClass("current")); 
+        })
+    </script> -->
+
+    <!-- 新浪下拉案例使用 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .nav {
+            margin: 100px;
+        }
+        .nav>li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 41px;
+            text-align: center;
+        }
+        .nav li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 41px;
+            color: #333;
+        }
+        .nav>li>a:hover {
+            background-color: #eee;
+        }
+        .nav ul {
+            display: none;
+            position: absolute;
+            top: 41px;
+            left: 0;
+            width: 100%;
+            border-left: 1px solid #FECC5B;
+            border-right: 1px solid #FECC5B;
+        }
+        .nav ul li {
+            border-bottom: 1px solid #FECC5B;
+        }
+        .nav ul li a:hover {
+            background-color: #FFF5DA;
+        }
+    </style>
+    <ul  class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        $(function() {
+            // 鼠标经过
+            $(".nav>li").mouseover(function() { // 鼠标经过nav里面的亲子节点小li时开始执行处理函数
+                // $(this) jQuery 当前元素 this不要加引号
+                // show() 显示元素
+                $(this).children("ul").show();
+            })
+            $(".nav>li").mouseout(function() { // 鼠标离开nav里面的亲子节点小li时开始执行处理函数
+                $(this).children("ul").hide();
+            })
+        })
+    </script> -->
+
+    <!-- jquery排他思想 -->
+    <!-- <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <button>快速</button>
+    <script>
+        $(function() {
+            // 1. 隐式迭代 给所有按钮都绑定了点击事件
+            $("button").click(function() {
+                // 2. 当前的元素变化背景颜色
+                $(this).css("background","pink")
+                // 3. 去掉其余元素背景颜色 隐式迭代
+                $(this).siblings("button").css("background","");
+            })
+        })
+    </script> -->
+
+    <!-- 淘宝服饰选择经典案例 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .wrapper {
+            width: 250px;
+            height: 248px;
+            margin: 100px auto 0;
+            border: 1px solid pink;
+            border-right: 0;
+            overflow: hidden;
+        }
+        #left,
+        #content {
+            float: left;
+        }
+        #left li {
+            background: url(../image/lili.jpg) repeat-x;
+        }
+        #left li a {
+            display: block;
+            width: 48px;
+            height: 27px;
+            border-bottom: 1px solid pink;
+            line-height: 27px;
+            text-align: center;
+            color: black;
+        }
+        #left li a:hover {
+            background-image: url(../image/abg\(1\).gif);
+        }
+        #content {
+            border-left: 1px solid pink;
+            border-right: 1px solid pink;
+        }
+    </style>
+    <div class="wrapper">
+        <ul id="left">
+            <li><a href="#">女靴</a></li>
+            <li><a href="#">雪地靴</a></li>
+            <li><a href="#">冬裙</a></li>
+            <li><a href="#">呢大衣</a></li>
+            <li><a href="#">毛衣</a></li>
+            <li><a href="#">棉服</a></li>
+            <li><a href="#">女裤</a></li>
+            <li><a href="#">羽绒服</a></li>
+            <li><a href="#">牛仔裤</a></li>
+        </ul>
+        <div id="content">
+            <div><a href="#"><img src="../image/女靴.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/雪地靴.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/冬裙.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/呢大衣.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/毛衣.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/棉服.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/女裤.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/羽绒服.jpg" alt=""></a></div>
+            <div><a href="#"><img src="../image/牛仔裤.jpg" alt=""></a></div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            // 鼠标经过左侧的小li
+            $("#left li").mouseover(function() {
+                // 2. 得到当前小li的索引号
+                var index = $(this).index();
+                // console.log(index);
+                // 3. 让我们通过eq(index)方法去选择相应图片显示
+                // $("#content div").eq(index).show();
+                // 4. 排他思想 清除所有其余的图片
+                // $("#content div").eq(index).siblings().hide();
+                // 5. 也可以通过链式编程更加简洁的完成 意味着一行完成所有逻辑的编写，前提是逻辑是通顺的
+                $("#content div").eq(index).show().siblings().hide();
+            })
+        })
+    </script> -->
+
+    <!-- 修改类样式方法 -->
+    <!-- <style>
+        div {
+            width: 250px;
+            height: 250px;
+            background-color: pink;
+            margin: 200px auto;
+            transition: all 0.5s;
+        }
+        .current {
+            background-color: red;
+            transform: rotate(360deg);
+        }
+    </style>
+    <div class="current"></div>
+    <script>
+        $(function() {
+            // 1. 添加类 addClass()
+            $("div").click(function() {
+                $(this).addClass("current"); // 在div中添加类名
+            });
+            // 2. 删除类 removeClass() {
+            $("div").click(function() {
+                $(this).removeClass("current")  // 删除掉div元素的类名
+            });
+            // 3. 切换类 toggleClass() 
+            $("div").click(function() {
+                $(this).toggleClass("current");  // toggleClass 如果处在a状态换到b状态，如果处在b状态换到a状态
+            });
+        })
+    </script> -->
+
+    <!-- tab栏切换案例 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 500px;
+            height: 300px;
+            background-color: pink;
+            margin: 200px auto;
+        }
+        .nav {
+             height: 50px;
+             background-color: #ccc;
+        }
+        .nav ul {
+            left: 0;
+        }
+        .nav ul li {
+            float: left;
+            width: 90px;
+            height: 50px;
+            list-style: none;
+            /* margin: 0 5px; */
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .current {
+            background-color: #c81623;
+            color: #fff;
+        }
+        .item {
+            display: none;
+        }
+    </style>
+    <div class="box">
+        <div class="nav">
+            <ul>
+                <li>商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">
+                商品介绍模块内容
+            </div>
+            <div class="item">
+                规格与包装模块内容
+            </div>
+            <div class="item">
+                售后保障模块内容
+            </div>
+            <div class="item">
+                商品评价模块内容
+            </div>
+            <div class="item">
+                手机社区模块内容
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $(".box li").click(function() {
+                // 1. 获取小li并且添加类
+                $(this).addClass("current");
+                $(this).siblings("li").removeClass("current");
+                // 2. 点击的同时，得到当前li的索引号
+                var index = $(this).index();
+                // 3. 让下面相应索引号的item显示，其余的item隐藏
+                $(".tab_con .item").eq(index).css("display","block");
+                $(".tab_con .item").eq(index).siblings(".item").css("display","none");
+            });
+        })
+    </script> -->
+
+    <!-- jQuer类操作和className区别 -->
+    <!-- <div class="one"></div>
+    <script>
+        // 1. 如果是通过className方法增加的类名会覆盖原先定义的类名
+        // var one = document.querySelector(".one");
+        // one.className = "two";
+        // 2. jquery类操作  addClass 添加类名
+        $(".one").addClass("two");  // addClass方法不会影响到原先定义的类名，相当于追加类名
+        // 3. jquery类操作  removeClass 删除类名
+        $(".one").removeClass("two");  // removeClass方法只会针对two类操作，是不会影响其余定义的类的
+    </script> -->
+
+    <!-- jquery显示与隐藏 -->
+    <!-- <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <button>显示</button>
+    <button>隐藏</button>
+    <button>切换</button>
+    <div></div>
+    <script>
+        $(function() {
+            $("button").eq(0).click(function() {
+                $("div").show(1000,function(){
+                    alert("111")
+                });
+            });
+            $("button").eq(1).click(function() {
+                $("div").hide(1000,function(){
+                    alert("111")
+                });
+            });
+            $("button").eq(2).click(function() {
+                $("div").toggle(1000);
+            });
+            // 一般情况下，我们都不加参数，直接显示隐藏就可以了
+        });
+    </script> -->
+
+    <!-- 滑动效果以及事件切换 -->
+    <!-- <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <button>下拉滑动</button>
+    <button>上拉滑动</button>
+    <button>切换滑动</button>
+    <div></div>
+    <script>
+        // 1. 滑动效果的基本应用 slideDown slideUp  slideToggle
+        $(function() {
+            $("button").eq(0).click(function() {
+                // 下滑动 slideDown()
+                $("div").slideDown();
+            });
+            $("button").eq(1).click(function() {
+                // 下滑动 slideUp()
+                $("div").slideUp();
+            });
+            $("button").eq(2).click(function() {
+                // 下滑动 slideUp()
+                $("div").slideToggle(500);
+            });
+        })
+        // 2. 事件切换  hover在jquery中当鼠标移动到一个匹配的元素上面时，会触发指定的第一个函数。当鼠标移出这个元素时，会触发指定的第二个函数。
+        // 鼠标经过和离开事件的复合写法
+        $("button").hover(function(){
+            $("div").slideDown();
+        },function() {
+            $("div").slideUp();
+        });
+        // 3. hover 只用一个函数，利用slideToggle切换
+        $("button").hover(function() {
+            $("div").slideToggle();  // 通过slideToggle方法就可以实现在hover中利用一个函数解决问题
+        })
+    </script> -->
+
+    <!-- jQuery淡入淡出透明度调整效果 -->
+    <!-- <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <button>淡入效果</button>
+    <button>淡出效果</button>
+    <button>淡入淡出效果</button>
+    <button>修改透明度</button>
+    <div></div>
+    <script>
+        $(function() {
+            $("button").eq(0).click(function() {
+                // 淡入 fadeIn()
+                $("div").fadeIn();
+            });
+            $("button").eq(1).click(function() {
+                // 淡入 fadeOut()
+                $("div").fadeOut();
+            });
+            $("button").eq(2).click(function() {
+                // 淡入 fadeToggle()
+                $("div").fadeToggle();
+            });
+            $("button").eq(3).click(function() {
+                // 修改透明度 fadeTo() 这个速度和透明度要必须写
+                $("div").fadeTo(1000,0.5);
+            });
+        })
+    </script> -->
+
+    <!-- 突出显示效果案例 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #000;
+        }
+        .wrap {
+            margin: 100px auto 0;
+            width: 630px;
+            height: 394px;
+            border: 1px solid #fff;
+            background: #000;
+            overflow: hidden;
+        }
+        ul {
+            list-style: none;
+        }
+        .wrap li {
+            float: left;
+            margin: 5px 5px;
+        }
+        .wrap img {
+            display: block;
+            border: 0;
+        }
+    </style>
+    <div class="wrap">
+        <ul>
+            <li><img src="../image/01.jpg" alt=""></li>
+            <li><img src="../image/02.jpg" alt=""></li>
+            <li><img src="../image/03.jpg" alt=""></li>
+            <li><img src="../image/04.jpg" alt=""></li>
+            <li><img src="../image/05.jpg" alt=""></li>
+            <li><img src="../image/06.jpg" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        $(function() {
+            // 通过hover方法控制鼠标移入移出时分别要执行的两个执行函数
+            $(".wrap li").hover(function() {
+                // 当某个小li被鼠标移中触发那么就执行fadeTo方法，用500ms改为0.5的透明度
+                $(this).siblings().stop().fadeTo(500,0.5);
+            },function() {
+                // 而当鼠标移开某个小li那么其余的所有的li都会被重置为透明度1，就会呈现出突出显示的效果
+                $(this).siblings().stop().fadeTo(500,1);
+            });
+            // stop方法可以让多次触发造成多个动画排队执行的情况直接结束
+        });          
+    </script> -->
+
+    <!-- animate自定义动画 -->
+    <!-- <style>
+        div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+    <button>动起来</button>
+    <div></div>
+    <script>
+        $(function() {
+            $("button").click(function() {
+                $("div").animate({
+                    left:300,
+                    top:300,
+                    opacity:.4
+                },500);
+            })
+        })
+    </script> -->
+
+    <!-- 王者荣耀手风琴案例 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            display: block;
+        }
+        ul {
+            list-style: none;
+        }
+        .king {
+            width: 852px;
+            margin: 100px auto;
+            background: url(../image/bg.png) no-repeat;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .king ul {
+            overflow: hidden;
+        }
+        .king li {
+            position: relative;
+            float: left;
+            width: 69px;
+            height: 69px;
+            margin-right: 10px;
+        }
+        .king  .current {
+            width: 224px;
+        }
+        .king  .current .big {
+            display: block;
+        }
+        .king  .current .small {
+            display: none;
+        }
+        .big {
+            width: 224px;
+            display: none;
+        }
+        .small {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 69px;
+            height: 69px;
+            border-radius: 5px;
+        }
+    </style>
+    <div class="king">
+        <ul>
+            <li class="current">
+                <a href="#">
+                <img src="../image/m1.jpg" alt="" class="small">
+                <img src="../image/m.png" alt="" class="big"> 
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <img src="../image/l1.jpg" alt="" class="small">
+                <img src="../image/l.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <img src="../image/c1.jpg" alt="" class="small">
+                <img src="../image/c.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <img src="../image/w1.jpg" alt="" class="small">
+                <img src="../image/w.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <img src="../image/z1.jpg" alt="" class="small">
+                <img src="../image/z.png" alt="" class="big">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <img src="../image/h1.jpg" alt class="small">
+                <img src="../image/h.png" alt class="big">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <img src="../image/t1.jpg" alt class="small">
+                <img src="../image/t.png" alt class="big">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        $(function() {
+            // 1. 鼠标经过某个小li 有两步操作
+            $(".king li").mouseenter(function() {
+                // (1) 当前小li宽度变为224px 同时里面的小图片淡出,大图片淡入
+                $(this).stop().animate({ // 当我找到小li的时候采用淡化效果过渡出一个宽度为224px的
+                    width:224
+                // (2)同时，find方法找到孙子元素small将其淡出，不显示，再通过siblings方法找到兄弟节点big将其淡入显示
+                // 这样就实现了长度边框，隐去小图，显示大图的逻辑效果
+                }).find(".small").stop().fadeOut().siblings(".big").stop().fadeIn(); 
+                // 2. 其余兄弟小li宽度变为69px，小图片淡入，大图片淡出
+                $(this).siblings("li").stop().animate({  // 动画效果修改宽度重新回到69px
+                    width:69
+                // 找到孙子元素.small使用淡入效果，显示小图标，而其余的兄弟元素.big使用淡出效果，不显示大图片，实现复原
+                }).find(".small").stop().fadeIn().siblings(".big").stop().fadeOut();  
+            })
+
+        })
+    </script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+</body>
+</html>

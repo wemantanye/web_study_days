@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN"">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;padding: 0;  /*给定所有元素初始值*/
+        }
+        #header {
+            height: 50px; /*设置头部的高度*/
+            background: #f74728;  /*设置头部背景颜色*/
+        }
+        #header .head {
+            width: 1005px;height: 50px; /*设置头中的长度以及宽度*/
+            background: #D1D3D6; /*设置头中的颜色*/
+            margin: auto;  /*外边距设置为自动*/
+        }
+        #banner {
+            height: 500px;  /*设置图片盒子高度*/
+            background: slateblue;  /*设置背景颜色*/
+        }
+        #category {
+            width: 1005px;height: 200px;    /*设置分块盒子的长度和宽度*/
+            margin: auto;background: #FF359A;   /*设置外边距和背景颜色*/
+        }
+        #category .item {
+            width: 125px;height: 165px;     /*每个分块的长度和高度*/
+            padding-left: 25px;     /*内边距左边的*/
+            padding-right: 25px;   /*内边距右边的*/
+            padding-bottom: 25px;   /*内边距下边的*/
+            padding-top: 10px;  /*内边距上面的*/
+            border-right: 1px dashed black; /*设置右边框的样式 颜色 大小的设置*/
+            float: left;    /*浮动在左*/
+        }
+        #category .item.first {
+            padding-left: 0; /*将左边多余的去掉*/
+        }
+        #category .item.last {
+            padding-right: 0;   /*右边多余的边距去掉*/
+            border: 0;  /*框线变为0*/
+        }
+        #case {
+            height: 490px;  /*设置案例盒子高度*/
+            background: #eeeeee;    /*背景颜色*/
+        }
+        #case .title-text {
+            width: 1005px;  /*文字盒子的长度*/
+            margin: auto;   /*外边距自动*/
+            font-size: 45px;    /*字体大小*/
+            padding-top: 20px;  /*上内边距设置*/
+            padding-bottom: 10px;   /*下内边距设置*/
+        }
+        #case .item-wrapper {
+            overflow: auto; /*溢出内容自动处置*/
+            margin: auto;   /*外边距自动设置*/
+            width: 1005px;  /*案例盒子长度设置*/
+        }
+        #case .item-wrapper .item {
+            width: 320px;   /*每个小块长度设置*/
+            height: 330px;  /*每个小块高度设置*/
+            background: #9ACD32;    /*背景颜色*/
+            float: left;    /*浮动靠左*/
+        }
+        #case .item-wrapper .item.mg {
+            margin-left: 20px;  /*外边距左距离设置*/
+            margin-right: 20px; /*外边距有距离设置*/
+        }
+        #case p {
+            width: 1005px;  /*段落盒子长度设置*/
+            margin-left: auto;  /*外边距左设置*/
+            margin-right: auto; /*外边距右设置*/
+            margin-top: 15px;   /*外边距上设置*/
+            text-align: center; /*文字靠中*/
+            font-size: 30px;    /*字体大小*/
+            color: dimgray; /*文字的颜色*/
+            height: 40px;line-height: 40px; /*高度设置，行高设置*/
+        }
+    </style>
+</head>
+<body>
+    <div id="header">  
+        <div class="head"></div>
+    </div>
+    <div id="banner"></div>   
+    <!-- 设置图片的盒子  -->
+    <div id="category">
+        <div class="item first"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item last"></div>    
+    </div>
+    <div id="case">
+        <div class="title-text">
+            Case
+        </div>
+        <div class="item-wrapper">
+            <div class="item"></div>
+            <div class="item mg"></div>
+            <div class="item"></div>
+        </div>
+        <p>查看更多+</p>
+    </div>
+</html>

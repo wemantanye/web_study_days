@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .green {
+            width: 100px;height: 100px;
+            background-color: green;
+            float: left;
+        }
+        .red {
+            width: 150px;height: 150px;
+            background-color: red;
+        }
+        .a,.b,.c {
+            float: left;height: 200px;
+        }
+        .a {
+            width: 200px;
+            background-color:green;
+        }
+        .b {
+            width: 700px;
+            background-color:red;
+        }
+        .c {
+            width: 200px;
+            background-color:blue;
+        }
+        .outer {
+            border-width: 5px;
+            border-color:black;
+            border-style: dashed;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <p>文字环绕效果</p>
+    <div class="green"></div>
+    <div class="red">
+        文字环绕文字环绕文字环绕
+    </div>
+    <div class="outer">
+    <p>横向排版布局</p>
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
+    </div>
+</body>
+</html>

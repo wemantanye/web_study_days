@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="box">盒子</div>
+    <div class="box">盒子2</div>
+    <div id="time">2021-8-24</div>
+    <div class="nav">
+        <ul>
+            <li>首页</li>
+            <li>产品</li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <button id="btn">唐伯虎</button>
+    
+
+    <!-- 通过id获取元素 -->
+    <!-- <script>
+        // 1. 因为我们文档页面从上往下加载，所以先得有标签，所以script写在下面
+        // 2. get 获取 element 元素  by 通过  驼峰命名法
+        // 3. 参数 id 是大小写敏感的字符串 
+        // 4. 返回的是一个元素对象
+        var timer = document.getElementById('time');
+        console.log(timer);
+        // 5. console.dir 打印我们返回的元素对象 更好的查看里面的属性和方法
+        console.dir(timer);
+    </script> -->
+
+    <!-- 通过标签获取元素 -->
+    <!-- <script>
+        // 1.getElementsByTagName() 返回的是获取过来元素对象的集合，以为数组的形式存储的
+        var lis = document.getElementsByTagName('li');
+        console.log(lis);
+        console.log(lis[0]);
+        // 依次打印里面的元素对象我们可以采取遍历的方式
+        for (var i = 0;i < lis.length;i++) {
+            console.log(lis[i]);
+        }
+        // 如果页面里面只有一个li 返回的还是伪数组的形式存储的
+        // 如果页面中没有这个元素  返回的是空的伪数组的形式
+
+        // 2. element.getElementsByTagName('标签名');  父元素必须是指定的单个元素
+        var ul = document.getElementsByTagName('ul');  //[ul]
+        console.log(ul[0].getElementsByTagName('li'));
+    </script> -->
+
+    <!-- H5新增获取元素的方式 -->
+    <!-- <script>
+        // 1. getElementsByClassName('选择器') 根据类名获得某些元素集合;
+        var boxs = document.getElementsByClassName('box') // 此方法类名不需要加.
+        console.log(boxs);
+        // 2. querySelector('选择器') 返回指定选择器的第一个元素对象 切记里面的选择器需要加符号 .box #nav
+        var firstbox = document.querySelector('.box');  // 跟类名必须要用.方法
+        console.log(firstbox);
+        var nav = document.querySelector('#nav'); 
+        console.log(nav);
+        // 3. querySelectorAll('选择器')  返回指定选择器的所有元素对象
+        var allBox = document.querySelectorAll('.box');
+        console.log(allBox);
+    </script> -->
+
+    <!-- 事件 -->
+    <!-- <script>
+        // 点击一个按钮，弹出对话框
+        // 事件是有三部分组成：  事件源    事件类型   事件处理程序
+        // 1. 事件源  事件被触发的对象 -》按钮
+        var btn = document.getElementById('btn');
+        // 2. 事件类型  如何处罚 什么事件 比如鼠标点击事件
+        // 3. 事件处理程序 通过一个函数赋值的方式 完成
+        btn.onclick = function() {
+            alert('点秋香')
+        }
+    </script> -->
+
+
+
+</body>
+</html>

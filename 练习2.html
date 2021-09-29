@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .logo {
+            /* 溢出隐藏 */
+            overflow: hidden;
+            /* 子绝父相，将后续的元素改为绝对定位使其在一排内定位 */
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid pink;
+            margin: 0 auto;
+        }
+        /* 使用before和after将mi_logo和mi_home在盒子中左右放入 */
+        .logo::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url(image/mi_logo.jpg) no-repeat center;
+        }
+        .logo::after {
+            content: "";
+            position: absolute;
+            left: 80px;
+            width: 100px;
+            height: 100px;
+            background: url(image/mihome_logo.jpg) no-repeat right;
+            /* 因为在这里需要修改logo的位置了所以就需要加过渡 */
+            transition: all .6s;
+        }
+        /* 将mi_logo往左负向移动100px，好让mi_home有足够的位置，而不必重叠在上面 */
+        .logo:hover::before {
+            left: -100px;
+        }
+        /* 当鼠标移开之后，mi_logo就返回来 */
+        .logo:hover::after {
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+    </div>
+</body>
+</html>

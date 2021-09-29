@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            /* 加浮动让小li都在一排显示 */
+            float: left;
+            /* 规定长高 */
+            width: 30px;
+            height: 30px;
+            /* 水平对齐 */
+            line-height: 30px;
+            /* 居中 */
+            text-align: center;
+            /* 外边距给定距离 */
+            margin: 10px;
+            /* 清除默认样式 */
+            list-style: none;
+            /* 给定四周边框 */
+            border: 1px solid pink;
+            /* 让正方形边框加圆角 */
+            border-radius: 50%;
+            /* 设置鼠标样式变成小手 */
+            cursor: pointer;
+            /* 给放大添加一个过渡效果 */
+            transition: all 0.4s;
+        }
+        li:hover {
+            /* 每当鼠标移动上来就会放大 */
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+</body>
+</html>

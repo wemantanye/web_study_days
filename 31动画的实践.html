@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 1.使用keyframes定义动画（类似定义类选择器） */
+        @keyframes move {
+            0% {
+                /* width: 100px;*/
+                transform: translateX(0px);
+            }
+            100% {
+                /* width: 1000px; */
+                transform: translateX(1000px);
+            }
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* margin: 100px auto; */
+            /* 2.调用动画效果 */
+            animation-name: move;
+            /* 持续时间 */
+            animation-duration: 2s;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

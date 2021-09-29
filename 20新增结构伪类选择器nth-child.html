@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            list-style: none;
+        }
+        ul li:nth-child(even) {
+            background-color: seashell;
+        }
+        ul li:nth-child(odd) {
+            background-color: snow;
+        }
+        /* 如果n是公式，则从0开始计算，第0个或者超出了元素的个数会被省略 */
+        /* ol li:nth-child(n) {
+            background-color: red;
+        } */
+        /* 由上面可知，2n就为偶数 */
+        ol li:nth-child(2n) {
+            background-color: red;
+        }
+        /* 2n+1就为奇数 */
+        ol li:nth-child(2n+1) {
+            background-color: violet;
+        }
+        /* nth-of-type会把指定元素的盒子排列序号 */
+        /* 执行的时候首先看div指定的元素，之后回去看:nth-of-type(1) 第几个孩子 */
+        section li:nth-of-type(2) {
+            background-color: yellow;
+        }
+        /* :first-of-type 指定类型中的第一个元素 */
+        section li:first-of-type {
+            background: tomato;
+        }
+        /* :last-of-type 指定类型中的最后一个元素 */
+        section li:last-of-type {
+            background: skyblue;
+        }
+    </style>    
+</head>
+<body>
+    <ul>
+        <li>我是第1个孩子</li>
+        <li>我是第2个孩子</li>
+        <li>我是第3个孩子</li>
+        <li>我是第5个孩子</li>
+        <li>我是第6个孩子</li>
+        <li>我是第7个孩子</li>
+        <li>我是第8个孩子</li>
+        <li>我是第9个孩子</li>
+    </ul>
+    <ol>
+        <li>我是第1个孩子</li>
+        <li>我是第2个孩子</li>
+        <li>我是第3个孩子</li>
+        <li>我是第5个孩子</li>
+        <li>我是第6个孩子</li>
+        <li>我是第7个孩子</li>
+        <li>我是第8个孩子</li>
+        <li>我是第9个孩子</li>
+    </ol>
+    <section>
+        <li>熊大</li>
+        <li>熊二</li>
+        <li>光头强</li>
+    </section>
+</body>
+</html>

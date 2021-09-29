@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div:first-child {
+            transform: translate(20px,10px);
+            width: 30px;
+            height: 30px;
+            background-color: blue;
+        }
+        div:last-child {
+            width: 30px;
+            height: 30px;
+            background-color: pink;
+        } */
+        /* 让一个盒子水平居中，可以用到translate */
+        .mid {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: purple;
+        }
+        p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            /* 老方法，通过定位做 */
+            /* margin-top: -50px;
+            margin-left: -50px; */
+            /* 用translate做,但注意对行内元素无效 */
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div class="mid">
+        <p></p>
+    </div>
+    <div></div>
+</body>
+</html>

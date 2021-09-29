@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid pink;
+            margin: 10px;
+            float: left;
+            overflow: hidden;
+        }
+        /* before和after分别是在元素的前面和后面插入一个元素，都属于行内元素 */
+        div::before {
+            content: "黑马";
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: hotpink;
+            transform: rotate(90deg);
+            /* 一下三种都可以实现这样的效果，根据具体情况采用不同的方法 */
+            transform-origin: left bottom;
+            /* transform-origin: 0% 100%; */
+            /* transform-origin: 0px 200px; */
+            transition: all 0.4s;
+        }
+        div:hover::before {
+            transform: rotate(0deg);
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #333;
+        }
+        .map {
+            position: relative;
+            width: 747px;
+            height: 616px;
+            background: url(image/map.png) no-repeat;
+            margin: 0 auto;
+        }
+        .city {
+            position: absolute;
+            top: 227px;
+            left: 547px;
+            color: #fff;
+        }
+        .tp {
+            /* position: absolute; */
+            top: 494px;
+            left: 661px;
+        }
+        .dotted {
+            width: 8px;
+            height: 8px;
+            background: #09f;
+            border-radius: 50%;
+        }
+        /* 因为这里的权重是10+1+10一共是21，权重要高于下面的波纹，所以就把下面波纹的样式覆盖了 */
+        .city div[class^="pulse"] {
+            /* 保证波纹在父盒子里面水平垂直居中 放大之后就会中心向四周发散 */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 8px;
+            height: 8px;
+            /* 添加阴影效果，水平不给垂直不给，只用加上阴影 */
+            box-shadow: 0 0 12px #009dfd;
+            border-radius: 50%;
+            animation: pulse 1.2s linear infinite;
+        }
+        /* 下面的波纹被覆盖的解决方法就是加权重 */
+        /* 设定延时就会有时间差 */
+        .city div.pulse2 {
+            animation-delay: 0.4s;
+        }
+        .city div.pulse3 {
+            animation-delay: 0.8s;
+        }
+        @keyframes pulse {
+            0% {}
+            70% {
+                width: 40px;
+                height: 40px;
+                /* 给定透明效果 */
+                opacity: 1;
+            }
+            100% {
+                width: 70px;
+                height: 70px;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="map">
+        <div class="city">
+            <div class="dotted"></div>
+            <div class="pulse1"></div>
+            <div class="pulse2"></div>
+            <div class="pulse3"></div>
+        </div>
+        <div class="city tp">
+            <div class="dotted"></div>
+            <div class="pulse1"></div>
+            <div class="pulse2"></div>
+            <div class="pulse3"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        alert("hello world!");
+        document.write("hello world!")
+    </script>
+    <style type="text/css">
+     * {
+         margin: 0; /*将所有的元素边距都设置为0*/
+     }
+     .item {
+        float: left; 
+        margin: 20px;  /*设置外边距，显示各个div的距离*/
+        border: 5px solid skyblue;
+        padding: 15px;
+    }
+     #box {
+        width: 1200px;
+        overflow: auto;  
+        margin: auto; /*只在水平方向有效，垂直方向无效*/
+     }
+    </style>
+</head>
+<body>
+    <div id="box">
+    <div class="item">
+        <img src="image/1.jpg" alt=""><br>
+        测试文字内容
+    </div>
+    <div class="item">
+        <img src="image/2.jpg" alt=""><br>
+        测试文字内容
+    </div>
+    <div class="item">
+        <img src="image/3.jpg" alt=""><br>
+        测试文字内容
+    </div>
+    </div>
+</body>
+</html>

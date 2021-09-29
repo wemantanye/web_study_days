@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button>显示当前系统事件</button>
+    <div>某个事件</div>
+    <p>我是文字</p>
+    <div></div> -->
+
+    <!-- 操作元素 -->
+    <!-- <script>
+        // 当我们点击了按钮，div里面的文字会发生变化
+        // 1. 获取元素
+        var btn = document.querySelector('button');
+        var div = document.querySelector('div');
+        // 2. 事件类型 注册事件
+        // 3. 事件处理程序
+        btn.onclick = function() {
+            div.innerText = '2021-08-24';
+        }
+        
+
+        // 当我们不触发事件，获取实时的日期事件
+        function getDate() {
+            // var date = new Date();
+            // console.log(date.getFullYear());
+            // console.log(date.getMonth()+1); //月份需要加一
+            // console.log(date.getDate());
+            // 写一个固定格式的年月日包括日期
+            var date = new Date();
+            var year = date.getFullYear(); //年
+            //因为在js中从0开始到11月份共计十二个月，因此需要在返回的结果上再加1
+            var month = date.getMonth() + 1;  // 月
+            var dates = date.getDate(); // 日
+            //因为js中星期的返回值是从星期日开始为0，所以创建一个数组
+            var arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+            var day = date.getDay(); //星期几
+            return '今天是:' + year + '年' + month + '月' + dates + '日' + arr[day];
+        } 
+        // 我们元素可以不用添加事件
+        var p = document.querySelector('p');
+        p.innerText = getDate();
+    </script> -->
+    
+    <!-- innerText 和 innerHTML的区别 -->
+    <!-- <script>
+        // 它们都用修改元素内容
+        // 1. innerText 不识别html标签 非标准  去除空格和换行
+        var div = document.querySelector('div');
+        // div.innertext = '<strong> 今天是：</strong> 2019'; // 因为不识别html标签，没办法识别
+        // 2. innerHTML 识别html标签 并且是符合W3c标注的
+        div.innerHTML = '<strong> 今天是：</strong> 2019'; //可以识别的
+        //  这两个属性是可读写的 可以获取元素里面的内容
+        var p = document.querySelector('p')
+        console.log(p.innerText);  // 除去html标签，空格换行也会去掉
+        console.log(p.innerHTML);  // 内容全部显示，除了识别html标签之外也会保留空格
+    </script> -->
+
+
+    <!-- 修改元素属性 -->
+    <!-- <button id="yu">御</button>
+    <button id="yu_mini">御mini</button>
+    <img src="../image/御.jpg" alt="">
+    <script>
+        // 修改元素属性 src
+        // 1. 获取元素
+        var yu = document.getElementById('yu');
+        var yu_mini = document.getElementById('yu_mini');
+        var img = document.querySelector('img');
+        yu.onclick = function() {
+           img.src = '../image/御.jpg';
+           img.title = '大疆-御';
+        }
+        yu_mini.onclick = function() {
+            img.src = '../image/御mini.png';
+            img.title = '大疆-御mini'
+        }
+    </script> -->
+
+    <!-- 分别显示不同图片，显示不同问候语 -->
+    <!-- <style>
+        img {
+            width: 300px;
+        }
+    </style>
+    <img src="../image/s.gif" alt="">
+    <div>上午好</div>
+    <script>
+    function getTime() {
+        var time = new Date();
+        var h = time.getHours();
+        //利用三元表达式就可以实现如果是个位数在前面自动补零
+        // h = h < 10 ? '0' + h : h;
+        // var m = time.getMinutes();
+        // m = m < 10 ? '0' + m : m;
+        // var s = time.getSeconds();
+        // s = s < 10 ? '0' + s : s;
+        return h;
+    }
+    var img = document.querySelector('img')
+    var div = document.querySelector('div');
+    var time = getTime();
+    if(time < 12) {
+        img.src = '../image/s.gif'
+        div.innerHTML = '上午好'
+    }else if(time < 18) {
+        img.src = '../image/x.gif'
+        div.innerHTML = '下午好'
+    }else {
+        img.src = '../image/w.gif'
+        div.innerHTML = '晚上好'
+    }
+    </script> -->
+
+    <!-- 修改表单属性 -->
+    <!-- <button>点击</button>
+    <input type="text" value="输入内容">
+    <script>
+        var btn = document.querySelector('button');
+        var input = document.querySelector('input');
+        btn.onclick = function() {
+            // 表单里面的值 文字内容是通过 value 来修改的 不通过innerHTML来修改
+            input.value = '被点击了';
+            // 如果想要某个表单被禁用 不能再点击 disabled 我们想要这个按钮 button禁用
+            this.disabled = true;
+            // this 指向的是时间函数的调用者btn
+        }
+    </script> -->
+
+    <!-- 仿京东显示密码明文案例 -->
+    <!-- <style>
+        .box {
+            position: relative;
+            width: 400px;
+            border-bottom: 1px solid #ccc;
+            margin:  100px auto;
+        }
+        .box input {
+            width: 370px;
+            height: 30px;
+            border: 0;
+            outline: none;
+        }
+        .box img {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 24px;
+        }
+    </style>
+    <div class="box">
+        <label for="">
+            <img src="../image/close.png" alt="" id="eye">
+        </label>
+        <input type="password" name="" id="">
+    </div>
+    <script>
+        // 1. 获取元素
+        var eye = document.getElementById('eye');
+        var input = document.querySelector('input');
+        // 2. 注册事件 处理程序
+        var flag = 0;
+        eye.onclick = function() {
+            if(flag == 0){
+                input.type = 'text';
+                eye.src = '../image/open.png'
+                flag = 1;  // 赋值操作
+            } else {
+                input.type = 'password';
+                eye.src = '../image/close.png'
+                flag = 0;
+            }
+        }
+    </script> -->
+
+    <!-- 修改样式属性 -->
+    <!-- <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <div></div>
+    <script>
+        // 1. 获取元素
+        var div = document.querySelector('div');
+        // 2. 注册事件 处理程序
+        div.onclick = function() {
+            // div.style里面的属性采取驼峰命名法
+            this.style.backgroundColor = 'purple'
+        }
+    </script> -->
+
+    <!-- 仿淘宝二维码关闭案例 -->
+    <!-- <style>
+        .box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            /* display: none; */
+        }
+        .close-btn {
+            position: absolute;
+            border: 1px solid #ccc;
+            left: -16px;    
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            cursor: pointer;
+        }
+    </style>
+    <div class="box">
+        <img src="../image/tao.png" alt="">
+        <i class="close-btn">×</i>
+    </div>
+    <script>
+        // 1. 获取元素
+        var box = document.querySelector('div');
+        var btn = document.querySelector('i');
+        // 2. 注册事件 处理程序
+        btn.onclick = function() {
+            box.style.display = 'none';
+        }
+    </script> -->
+
+    <!-- 循环精灵图案例 -->
+    <!-- <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            list-style: none;
+        }
+        .box {
+            width: 250px;
+            margin: 100px auto;
+        }
+        .box li {
+            /* 加浮动让每四个在一排上显示 */
+            float: left;
+            width: 24px;
+            height: 24px;
+            background-color: pink;
+            margin: 15px;
+            background: url('../image/sprite.png') no-repeat;
+        }
+    </style>
+    <div class="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        // 1. 获取元素
+        var lis = document.querySelectorAll('li');
+        for(var i =0;i < lis.length;i++) {
+            // 因为精灵图的y坐标是每加一个就要再乘上44
+            var index = i * 44;
+            // 让lis遍历所有的元素，并把它们背景的定位更改了
+            lis[i].style.backgroundPosition = '0-'+ index + 'px';
+        }
+    </script> -->
+
+    <!-- 显示隐藏文本框内容 -->
+    <!-- <input type="text" name="" value="手机">
+    <script>
+        // 1. 获取元素
+        var text = document.querySelector('input');
+        // 2. 注册事件 获得焦点事件 onfocus
+        text.onfocus = function() {
+            if(this.value === '手机') {
+                this.value = '';
+            }
+            // 获得焦点需要把文本框里的文字颜色变黑
+            this.style.color = '#333';
+        }
+        // 3. 注册事件 失去焦点事件 onblur 
+        text.onblur = function() {
+            if(this.value === '') {
+                this.value = '手机';
+            }
+            // 失去焦点需要把文本框里的文字颜色变浅
+            this.style.color = '#999';
+        }
+    </script> -->
+
+    <!-- 使用className修改样式属性 -->
+    <!-- <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .change {
+            margin-top: 200px;
+            background-color: purple;
+        }
+    </style>
+    <div>文本</div>
+    <script>
+        // 1. 获取元素
+        var div = document.querySelector('div');
+        div.onclick = function() {
+            // 如果需要修改的元素很多，那么最好使用className更改元素的样式
+            // 相当于提前在css中直接编辑好样式明明之后插入到div元素上
+            this.className = 'change';
+        }
+    </script> -->
+
+    <!-- 密码框验证信息 -->
+    <!-- <style>
+        .register {
+            width: 600px;
+            margin: 100px auto;
+        }
+        .message {
+            display: inline-block;
+            font-size: 12px;
+            color: #999;
+            background: url(../image/mess.png) no-repeat left center;
+            padding-left: 20px;
+        }
+        .wrong {
+            color: red;
+            background-image: url(../image/wrong.png);
+        }
+        .right {
+            color: green;
+            background-image: url(../image/right.png);
+        }
+    </style>
+    <div class="register">
+        <input type="password" class="ipt">
+        <p class="message">请输入6~16位密码</p>
+    </div>
+    <script>
+        // 1. 获取元素
+        var ipt = document.querySelector('.ipt')
+        var message = document.querySelector('.message');
+        // 2. 注册事件 失去焦点
+        ipt.onblur = function() {
+            // 根据表单里面值的长度来检测
+            if(ipt.value.length < 6 || ipt.value.length > 16) {
+                message.className = 'message wrong';
+                message.innerHTML = '你输入的位数不对，要求6-16位'
+            } else {
+                message.className = 'message right';
+                message.innerHTML = '你输入的位数正确'
+            }
+        }
+    </script> -->
+
+    <!-- 排他思想算法 -->
+    <!-- <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+        // 1. 获取所有按钮元素
+        var btns = document.getElementsByTagName('button');
+        for(var i = 0;i < btns.length;i++) {
+            btns[i].onclick = function() {
+                // 1. 因为多个按钮只能有一个按钮被处罚，因此我们先把所有的按钮背景颜色去掉
+                for(var i = 0;i < btns.length;i++) {
+                    btns[i].style.backgroundColor = '';
+                }
+                // 2. 然后才让当前的元素背景颜色为pink，留下我自己
+                this.style.backgroundColor = 'pink';
+            }
+        }
+    </script> -->
+
+    <!-- 百度换肤效果应用-操作元素 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }        
+        body {
+            background: url(../image/1.jpg) no-repeat center top;
+        }
+        li {
+            list-style: none;
+        }
+        .baidu {
+            overflow: hidden;
+            margin: 100px auto;
+            background-color: #fff;
+            width: 410px;
+            padding-top: 3px;
+        }
+        .baidu li {
+            float: left;
+            margin: 0 1px;
+            cursor: pointer;
+        }
+        .baidu img {
+            width: 100px;
+        }
+    </style>
+    <ul class="baidu">
+        <li><img src="../image/1.jpg" alt=""></li>
+        <li><img src="../image/2.jpg" alt=""></li>
+        <li><img src="../image/3.jpg" alt=""></li>
+        <li><img src="../image/4.jpg" alt=""></li>
+    </ul>
+    <script>
+        // 1.获取元素
+        var imgs = document.querySelector('.baidu').querySelectorAll('img');  // 抓取元素把所有的ul里面的img全部抓取
+        // 2. 循环注册事件
+        for(var i =0;i < imgs.length;i++) {   // 通过遍历循环注册事件，进行检测
+            imgs[i].onclick = function() {
+                // console.log(this.src);
+                // this.src就是我们点击图片的路径，把这个路径 this.src 给body就可以
+                document.body.style.backgroundImage = 'url(' + this.src + ')';
+                // ++ 是为了连接字符串
+            }   
+        }
+    </script> -->
+    
+    <!-- 表格隔行变色效果 -->
+    <!-- <style>
+        .bg {
+            background-color: pink;
+        }
+    </style>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>month</th>
+                <th>savings</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>january</td>
+                <td>$100</td>
+            </tr>
+            <tr>
+                <td>octber</td>
+                <td>$50</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        // 1. 获取元素 tbody里面所有的行
+        var trs = document.querySelector('tbody').querySelectorAll('tr');
+        // 2. 利用循环绑定注册事件
+        for(var i = 0;i < trs.length;i++) {
+            // 3. 鼠标经过事件 onmouseseover
+            trs[i].onmouseover = function() {
+                this.className = 'bg';
+            }
+            // 4. 鼠标离开时间 onmouseout
+            trs[i].onmouseout = function() {
+                this.className = '';
+            }
+        }
+    </script> -->
+
+    <!-- 表单全选取消全选 -->
+    <!-- <style>
+        table {
+            border: 1px solid black;
+        }
+        thead {
+            background-color: skyblue;
+        }
+        tbody {
+            background-color: #ccc;
+        }
+    </style>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="j_cbAll">
+                    </th>
+                    <th>商品</th>
+                    <th>价格</th>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" id="">
+                    </td>
+                    <td>iphone8</td>
+                    <td>8000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" id="">
+                    </td>
+                    <td>iphone8</td>
+                    <td>8000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="" id="">
+                    </td>
+                    <td>iphone8</td>
+                    <td>8000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // 全选和取消全选做法： 让下面所有复选框的checked属性跟随全选按钮即可
+        // 1. 获取元素
+        var j_cbAll = document.getElementById('j_cbAll');  // 全选按钮
+        var j_tbs = document.getElementById('j_tb').getElementsByTagName('input'); // 选择下面所有复选框
+        // 注册事件
+        // console.log(j_tbs);
+        j_cbAll.onclick = function() {
+            // this.checked 得到辅选中的选中状态如果是true 就是选中，如果是false就是未选中
+            console.log(this.checked);
+            for(var i = 0;i < j_tbs.length;i++) {
+                j_tbs[i].checked = this.checked;
+            }
+        }
+        // 下面复选框需要全部选中，上面全选才能选中做法：给下面所有复选框绑定点击事件，每次点击，都要循环
+        for(var i = 0;i < j_tbs.length;i++) {
+            j_tbs[i].onclick = function() {
+                var flag = true;
+                // 每次点击下面的复选款都要循环检查这四个小按钮是否全被选中
+                for(var i = 0;i < j_tbs.length;i++) {
+                    if(!j_tbs[i].checked) {
+                        flag = false;
+                        break; // 退出for循环 这样可以提供执行效率 因为只要有一个没被选中 剩下的就无需循环了
+                    }
+                }
+                j_cbAll.checked = flag;
+            }
+        }
+    </script> -->
+
+    <!-- 获取自定义属性 -->
+    <!-- <div id="demo" index='1'></div>
+    <script>
+        // 1. 获取元素的属性值
+        // element.属性
+        var div = document.querySelector('div');
+        console.log(div.id);
+        // 2. 获取元素的自定义属性 即是程序员自己添加的属性
+        console.log(div.getAttribute('index'));
+    </script> -->
+
+    <!-- 设定和移除自定义属性 -->
+    <!-- <div id="demo" index='1'></div>
+    <script>
+        // 设置元素属性值
+        var div = document.querySelector('div');
+        // 1. element.属性 = '值'
+        div.id = 'test';
+        // 2. element.setAttribute('属性','值'); 主要针对于自定义属性
+        div.setAttribute('index',2);
+        console.log(div);
+
+        // 移除属性值 removeAttribute(属性)
+        div.removeAttribute('index');
+        console.log(div);
+    </script> -->
+
+    <!-- 重点案例  tab栏切换布局 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 500px;
+            height: 300px;
+            background-color: pink;
+            margin: 200px auto;
+        }
+        .nav {
+             height: 50px;
+             background-color: #ccc;
+        }
+        .nav ul {
+            left: 0;
+        }
+        .nav ul li {
+            float: left;
+            width: 90px;
+            height: 50px;
+            list-style: none;
+            /* margin: 0 5px; */
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .current {
+            background-color: #c81623;
+            color: #fff;
+        }
+        .item {
+            display: none;
+        }
+    </style>
+    <div class="box">
+        <div class="nav">
+            <ul>
+                <li class="current">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">
+                商品介绍模块内容
+            </div>
+            <div class="item">
+                规格与包装模块内容
+            </div>
+            <div class="item">
+                售后保障模块内容
+            </div>
+            <div class="item">
+                商品评价模块内容
+            </div>
+            <div class="item">
+                手机社区模块内容
+            </div>
+        </div>
+    </div>
+    <script>
+        // 1. 上模块选项卡，点击某一个，当前这一个底色会是红色，其余不变，用排他思想修改类名的方式
+        var tab_list = document.querySelector('.nav');
+        var lis = tab_list.querySelectorAll('li');
+        var items = document.querySelectorAll('.item');
+        // console.log(lis);
+        // for循环绑定点击事件
+        for(var i = 0;i < lis.length;i++) {
+            lis[i].setAttribute('index',i);
+            lis[i].onclick = function() {
+                // 清除所有人，清除class这个类
+                for(var i = 0;i < lis.length;i++) {
+                    lis[i].className = '';
+                }
+                // 留下我自己
+                this.className = 'current';
+                // 2. 下面的显示内容模块
+                var index = this.getAttribute('index');
+                console.log(index);
+                // 干掉所有人 让其余item这些div隐藏
+                for(var i = 0;i < items.length;i++) {
+                    items[i].style.display = 'none'
+                }
+                // 留下自己 让对应的item显示出来
+                items[index].style.display = 'block';
+            }
+        }
+    </script> -->
+
+    <!-- h5自定义属性 -->
+    <!-- <div getTime="20" data-index="2" data-list-name="andy"></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(div.getAttribute('getTime'));
+        // 添加一个属性值
+        div.setAttribute('data-time',20);
+        // 获取div中的属性值
+        console.log(div.getAttribute('data-index'));
+        console.log(div.getAttribute('data-list-name'));
+        // h5新增的获取自定义属性的方法，它只能获取data-开头的
+        // dataset 是一个集合里面存了所有以data开头的自定义属性
+        console.log(div.dataset);
+        console.log(div.dataset.index);
+        console.log(div.dataset['index']);
+        // 如果自定义属性里面有多个连接的单词，我们获取的时候采取 驼峰命名法
+        console.log(div.dataset.listName);
+        console.log(div.dataset['listName']);
+    </script> -->
+
+</body>
+</html>

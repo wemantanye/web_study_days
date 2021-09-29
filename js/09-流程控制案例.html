@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1.网吧案例 -->
+    <!-- <script>
+        var age = prompt("请输入你的年龄");
+        if(age>18) {
+            alert("我想带你去网吧偷耳机");
+        }else {
+            alert("回家写作业去");
+        }
+    </script> -->
+
+    <!-- 2.是否中奖案例 -->
+    <!-- <script>
+        //判断是否中奖案例
+        var str = prompt("请问你的名字是");
+        if(str == "刘德华") {
+            alert("你中了五元钱");
+        }else{
+            alert("很遗憾你没有中奖");
+        }
+    </script> -->
+
+    <!-- 3.判断成绩级别案例 -->
+    <!-- <script>
+        var score = prompt("输入你的成绩");
+        if(score >= 90){
+            alert("A");
+        }else if(score >= 80) {
+            alert("B");
+        }else if(score >= 70) {
+            alert("C")
+        }else if(score >= 60) {
+            alert("D");
+        }else {
+            alert("E");
+        }
+    </script> -->
+
+    <!-- 4.数字补零案例 -->
+    <!-- <script>
+        var num = prompt("请输入数字");
+        var season = num < 10 ? "0"+num : num;
+        alert(season);
+    </script> -->
+
+    <!-- 5.查询水果案例 -->
+    <!-- <script>
+        var fruit = prompt("输入你喜欢的水果");
+        switch(fruit) {
+            case '榴莲':
+                alert("35元一斤");
+                break;
+            case '香蕉': 
+                alert('8元一斤');
+                break;
+            default:
+                alert("没有这种水果");
+                break;
+        }
+    </script> -->
+
+    <!-- 6.比较数字的最大值 -->
+    <!-- <script>
+        var a = prompt("输入一个数字");
+        var b = prompt("输入一个数字");
+        if(a>b){
+            alert(a);
+        }else{
+            alert(b);
+        }
+    </script> -->
+
+    <!-- 7.判断奇数偶数 -->
+    <!-- <script>
+        var num = prompt("输入一个数");
+        if(num%2==0){
+            alert("是偶数");
+        }else{
+            alert("是奇数");
+        }
+    </script> -->
+
+    <!-- 8.学生成绩案例 -->
+    <!-- <script>
+        var num = prompt("请输入班级总人数");
+        var sum=0;
+        for(var i=1;i<=num;i++){
+            var score = prompt("请输入第" + i + "个学生成绩");
+            sum+=parseFloat(score);
+        }
+        alert("总成绩为" + sum); 
+        var average = sum/num; 
+        alert("平均成绩为" + average);
+    </script> -->
+
+    <!-- 9.双重打印五行数字 -->
+    <!-- <script>
+        var str = '';
+        for(i=0;i<5;i++){
+            for(j=0;j<5;j++){
+                str+='*';
+            }
+            //因为内层执行了打印五次，但是实际上没有实现五层都是五次的效果，所以要在外层循环中换行
+            str+='\n';
+        }
+        console.log(str); 
+    </script>    -->
+
+    <!-- 10.根据输入的行列来打印*号 -->
+    <!-- <script>
+        //打印n行n列的星星
+        var rows = prompt("请输入行数");
+        var cols = prompt("请输入列数");
+        var str = '';
+        for(var i =1;i <= rows;i++){
+            for(var j = 1;j <= cols;j++){
+                str+='*';
+            }
+            str+='\n';
+        }
+        console.log(str);
+    </script> -->
+
+    <!-- 11.打印倒三角案例 -->
+    <!-- <script>
+        //空的文本，用来强制转换为字符串
+        var str = '';
+        for(var i = 1;i<=10;i++){
+            for(var j = i;j <= 10;j++){
+                str+='*';
+            }
+            str+='\n'
+        }
+        console.log(str);
+    </script> -->
+
+    <!-- 12.打印正三角案例 -->
+    <!-- <script>
+        //空的文本，用来强制转换为字符串
+        var str = '';
+        for(var i = 1;i <= 10;i++){
+            // 通过分析得出结论，2*行数就是改行列数
+            for(var j= 1;j<=2*i-1;j++){
+                str+='*';
+            }
+            str+='\n'
+        }
+        console.log(str); -->
+
+        <!-- 13.九九乘法表 -->
+        <!-- <script>
+            var str = '';
+            //行数
+            for(var i=1;i<10;i++){
+                //列数
+                for(var j=1;j<=i;j++) {
+                    str += j+'*'+i+'='+i*j+'  ';
+                }
+                str+='\n';
+            }
+            console.log(str); -->
+
+            <!-- 14.打印人的一生 -->
+            <!-- <script>
+                var i = 1;
+                while(i <= 100){
+                    console.log('这个人今年' + i + '岁了');
+                    i++;
+                }
+            </script> -->
+
+        <!-- 15.用while计算1-100所有的整数和 -->
+        <!-- <script>
+            var sum = 0;
+            var j = 1;
+            while(j <= 100){
+                sum+=j;
+                j++;
+            }
+            console.log(sum);
+        </script>
+    </script> -->
+    
+    <!-- <script>
+        //atm案例
+        var deposit = 100;
+        var money = 0;
+        // var instruction = prompt("请输入你要的操作:" + '1.存钱' + '2.取钱' + '3.显示余额' + '4.退出');
+        for(i = 0;i < 100;i++){
+            var instruction = prompt("请输入你要的操作:" + '1.存钱' + '2.取钱' + '3.显示余额' + '4.退出');
+            switch(Number(instruction)){
+            //存钱
+            case 1:
+                var money = prompt("请输入你要存的钱数");
+                deposit += parseFloat(money);
+                alert('当前余额为:' + deposit);
+                break;
+            //取钱    
+            case 2:
+                var money = prompt("应取钱数:");
+                deposit -= parseFloat(money);
+                alert('当前余额为:'+deposit);
+                break;
+            //显示余额
+            case 3:
+                alert('当前余额为:' + deposit);
+                break;
+            //退出
+            case 4:
+                alert('您已退出')
+                break;
+            default:
+                alert('请输入有效的操作');
+            }
+        }
+    </script> -->
+
+ 
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+
+     <!-- 1.求某个字符出现的位置以及次数 -->
+     <!-- <script>
+        //  ['pink','blue','red','blue','gereen','yellow','pink']
+        var arr = ['pink','blue','red','blue','gereen','red','yellow','red','pink']
+        var index = arr.indexOf('red');
+        var count = 0;
+        while(index !== -1) {
+            // 在循环中，每次都将索引号输出
+            console.log(index);
+            count++;
+            // 因为indexOf 只能查找到第一个，就不查找，所以要在循环中加1，继续查找
+            index = arr.indexOf('red',index + 1);
+        }
+        console.log('red出现的次数是:' + count);
+    </script> -->
+
+    <!-- 根据位置返回字符串 -->
+    <!-- <script>
+        // 1.charAt(index) 根据位置返回字符
+        var str = 'andy';
+        console.log(str.charAt(3));
+        // 遍历所有的字符
+        for(var i=0;i<str.length;i++) {
+            console.log(str.charAt(i));
+        }
+
+        // 2.charcodeAt(index) 返回相应索引号的字符ASCII值
+        console.log(str.charCodeAt(0)); // a -> ascii码值 97
+
+        // 3. str[index] 获取指定位置处字符  H5新增
+        console.log(str[0]);
+    </script> -->
+
+    <!-- 统计出现次数最多的字符 -->
+    <!-- <script>
+        var str = 'abcdefofasfofadcfao';
+        var o = {};
+        for(var i = 0;i < str.length;i++) {
+            var chars = str.charAt(i);
+            if(o[chars]) {
+                o[chars]++;
+            }else {
+                o[chars] = 1;
+            }
+        }
+        console.log(o);
+    </script> -->
+
+    <!-- 字符串操作 -->
+    <script>    
+        // 1. concat('字符串1','字符串2',...) 
+            var str = 'andy';
+            console.log(str.concat('red'));
+
+        // 2. substr('截取的起始位置','截取几个字符');
+        var str1 = 'sdfafdasjbgf';
+        console.log(str1.substr(2,2)); // 从索引号2开始，然后截取2个字符
+
+        // 3. 替换字符  replace('被替换的字符','替换为的字符') 并且只会替换第一个字符
+        var str2 = 'andyandy';
+        console.log(str2.replace('a','b')); // 从开头往后查找被替换的元素 'a' ，并替换为 'b'
+        
+        // 4. 字符转换为数组 split('分割符')  前面我们学过 join 把字符转换为字符串
+        var str3 = 'red,pink,blue';
+        console.log(str3.split(','));  // 将字符串转换为数组
+        var str3 = 'red&pink&blue';
+        console.log(str3.split('&'));
+        console.log(typeof str3);
+    </script>
+
+
+
+
+
+</body>
+</html>

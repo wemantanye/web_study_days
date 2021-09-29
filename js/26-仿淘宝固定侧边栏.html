@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-bar">
+        <span class="goBack">返回顶部</span>
+    </div>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+    <script>
+        //1. 获取元素
+        var sliderbar = document.querySelector('.slider-bar');
+        var banner = document.querySelector('.banner');
+        // banner.offestTop 就是被卷去头部的大小 一定要写到滚动的外面
+        var bannerTop = banner.offsetTop
+        // 当我们侧边栏固定定位之后应该变化的数值
+        var sliderbarTop = sliderbar.offsetTop - bannerTop;
+        // 获取main 主体元素
+        var main = document.querySelector('.main');
+        var goBack = document.querySelector('.goBack');
+        var mainTop = main.offsetTop;
+        // 2. 页面滚动事件 scroll
+        document.addEventListener('scroll', function () {
+            // console.log(11);
+            // window.pageYOffset 页面被卷去的头部
+            // console.log(window.pageYOffset);
+            // 3 .当我们页面被卷去的头部大于等于了 172 此时 侧边栏就要改为固定定位
+            if (window.pageYOffset >= bannerTop) {
+                sliderbar.style.position = 'fixed';
+                sliderbar.style.top = sliderbarTop + 'px';
+            } else {
+                sliderbar.style.position = 'absolute';
+                sliderbar.style.top = '300px';
+            }
+            // 4. 当我们页面滚动到main盒子，就显示 goback模块
+            if (window.pageYOffset >= mainTop) {
+                goBack.style.display = 'block';
+            } else {
+                goBack.style.display = 'none';
+            }
+
+        })
+        // 当我们点击了返回顶部模块，就让窗口滚动到页面的最前面
+        goBack.addEventListener('click', function () {
+            // window.scroll(0, 100);
+            // 窗口滚动，所以对象是window
+            animate(window,0);
+        })
+        // 动画函数
+        function animate(obj, target, callback) { // 三个行参数，obj 目标对象 target 目标位置 callback 回调函数，添加了回调函数
+            // 当我们不断点击按钮，这个元素的运行速度会越来越快，因为会一直开启定时器
+            // 解决方法就是 让我们元素只有一个定时器在执行，所以在函数执行开始就先清除定时器
+            // 缓动动画的原理：
+            // 让盒子移动的距离慢慢变下，速度就会慢慢变小
+            // 核心算法: (目标值 - 现在的位置) / 10 作为每次移动距离的步长
+            // 停止的条件是： 让当前盒子位置等于目标位置就停止定时器
+            clearInterval(obj.timer);
+            // 定义一个定时器不断重复操作
+            obj.timer = setInterval(function () {
+                // 步长值写在定时器的里面
+                // 因为在除以10的过程中会有小数，这就会导致步长有问题，所以我们要通过数学函数取整
+                var step = (target - window.pageYOffset) / 10;
+                // 通过三元表达式，而如果是正的的补偿，那就往大了取整,如果是负的步长，比如在回调时候就取小整
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (window.pageYOffset == target) {
+                    // 在外设置一个变量timer，这样可以通过clearInterval方法停止定时
+                    clearInterval(obj.timer);
+                    // 定时器一结束判断有没有回调函数
+                    if (callback) {
+                        callback();
+                    }
+                }
+                // obj.style.left = window.pageYOffset + step + "px"; // 获取当前位置并加像素
+                window.scroll(0, window.pageYOffset + step);
+            }, 15);
+        };
+    </script>
+</body>
+
+</html>

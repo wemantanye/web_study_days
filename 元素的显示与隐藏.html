@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1 {
+            position: relative;
+            width: 440px;
+            height: 330px;
+            background-color: pink;
+            margin: 30px auto;
+        }
+        .div1 img {
+            width: 100%;
+            height: 100%;
+        }
+        .mask {
+            display: none;
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .4);
+        }
+        .div1:hover .mask {
+            display: block;
+        }
+        .jinlin {
+            width: auto;
+            height: auto;
+        }
+        .jinlin .w {
+            width: 60px;
+            height: 60px;
+            background: url(C:\project\html\练习\image\12.2.jpg);
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="mask"></div>
+        <img src="C:\project\html\练习\image\御.jpg" alt="">
+    </div>
+    <div class="jinlin">
+        <span class="w"></span>
+        <span class="x"></span>
+        <span class="y"></span>
+    </div> 
+</body>
+</html>

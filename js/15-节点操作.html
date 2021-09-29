@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <!-- 节点操作第一个元素和最后一个元素 -->
+    <!-- <ol>
+        <ul>1li</ul>
+        <ul>2li</ul>
+        <ul>3li</ul>
+        <ul>4li</ul>
+    </ol>
+    <script>
+        var ol = document.querySelector('ol');
+        // 1. firstChild 第一个子节点 不管是文本节点还是元素节点
+        // 因为选择的第一节点和第二节点都有空格，因此只能返回text文本节点
+        console.log(ol.firstChild);
+        console.log(ol.lastChild);
+        // 2. firstElementChild 返回第一个子元素节点 ie9才支持
+        console.log(ol.firstElementChild);
+        console.log(ol.lastElementChild);
+        // 3. 实际开发的写法 既没有兼容性问题又返回第一个子元素
+        console.log(ol.children[0]); // 第一个子元素
+        console.log(ol.children[ol.children.length - 1]); //最后一个子元素
+    </script> -->
+
+    <!-- 新浪下拉菜单 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .nav {
+            margin: 100px;
+        }
+        .nav>li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 41px;
+            text-align: center;
+        }
+        .nav li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 41px;
+            color: #333;
+        }
+        .nav>li>a:hover {
+            background-color: #eee;
+        }
+        .nav ul {
+            display: none;
+            position: absolute;
+            top: 41px;
+            left: 0;
+            width: 100%;
+            border-left: 1px solid #FECC5B;
+            border-right: 1px solid #FECC5B;
+        }
+        .nav ul li {
+            border-bottom: 1px solid #FECC5B;
+        }
+        .nav ul li a:hover {
+            background-color: #FFF5DA;
+        }
+    </style>
+    <ul  class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // 1. 获取元素
+        var nav = document.querySelector('.nav');  // 获取属性名为nav的元素赋值给nav
+        var lis = nav.children; // 用children方法返回所有子元素
+        for(var i = 0;i < lis.length;i++) {  // 遍历循环用于检测事件
+            lis[i].onmouseover = function() {  // 遍历lis里面的所有子元素，如果鼠标放在元素上
+                this.children[1].style.display = 'block'; // lis里面的第二个元素从不显示到块状元素
+            }
+            lis[i].onmouseout = function() { // 遍历lis里面的所有子元素，如果鼠标离开
+                this.children[1].style.display = 'none'; // lis中离开的li就会将lis里面的第二个元素重新设置为不可见
+            }
+        }
+    </script>    -->
+
+    <!-- 创建和添加节点 -->
+    <!-- <ul>
+        <li>123</li>
+    </ul>
+    <script>
+        // 1. 创建节点元素节点
+        var li = document.createElement('li');   // 通过createElement创建节点方法，创建节点
+        // 2. 添加节点 node.appendChild(child) node 父级 child 子级
+        var ul = document.querySelector('ul');  // 找到ul获取元素并赋值
+        ul.appendChild(li); // 通过appendChild方法添加子元素
+        ul.insertBefore(lili,ul.children[0]); // insertBefore方法是将一个子节点添加到父节点的指定子节点前面
+        // 总结：我们想要页面添加一个新的元素    1.创建元素    2.添加元素
+   </script> -->
+
+   <!-- 发布留言案例 -->
+   <!-- <style>
+       ul {
+           width: 200px;
+       }
+       ul li {
+           background-color: pink;
+       }
+       li a {
+           float: right;
+       }
+   </style>
+   <textarea name="" id="" cols="30" rows="10">123</textarea>
+   <button>发布</button>
+   <ul>
+       
+   </ul>
+   <script>
+       // 1. 获取元素
+       var btn = document.querySelector('button');
+       var text = document.querySelector('textarea');
+       var ul = document.querySelector('ul');
+       // 2. 注册事件
+       btn.onclick = function() {  // 按钮一旦被点击就执行下面的函数方法
+           // 如果输入框的内容是空那就返回假，不执行，并弹窗提示
+           if(text.value == '') {
+                alert('您没有输入内容');
+                return false;
+           }else {
+                // 1. 创建元素
+                var li = document.createElement('li'); // 文本对象模型中创建元素方法createElement创建一个小li并赋值给变量
+                // 现有li才能赋值   javascript:;阻止跳转
+                li.innerHTML = text.value + "<a href='javascript:;'>删除</a>";  // 通过innerHTML加入元素把输入框里的值赋值给它
+                // 2. 添加元素
+                // ul.qppendChild(li); 
+                ul.insertBefore(li,ul.children[0]);  // 通过insertBefore方法永远将li放在ul子节点的第一个位置
+                // 3. 删除元素 删除的是当前连接的li 它的父亲
+                var as = document.querySelectorAll('a');
+                for(var i = 0;i < as.length;i++) {
+                    as[i].onclick = function() {
+                        // node.removeChild(child); 删除的是li当前a所在的li
+                        // removeChild删除子节点    parentNode 获取父节点 
+                        ul.removeChild(this.parentNode);   // 意思就是先a元素节点的父节点，然后再获取该节点父节点，我找我自己
+                    }
+                }
+            }
+       }
+   </script> --><!-- 节点操作第一个元素和最后一个元素 -->
+    <!-- <ol>
+        <ul>1li</ul>
+        <ul>2li</ul>
+        <ul>3li</ul>
+        <ul>4li</ul>
+    </ol>
+    <script>
+        var ol = document.querySelector('ol');
+        // 1. firstChild 第一个子节点 不管是文本节点还是元素节点
+        // 因为选择的第一节点和第二节点都有空格，因此只能返回text文本节点
+        console.log(ol.firstChild);
+        console.log(ol.lastChild);
+        // 2. firstElementChild 返回第一个子元素节点 ie9才支持
+        console.log(ol.firstElementChild);
+        console.log(ol.lastElementChild);
+        // 3. 实际开发的写法 既没有兼容性问题又返回第一个子元素
+        console.log(ol.children[0]); // 第一个子元素
+        console.log(ol.children[ol.children.length - 1]); //最后一个子元素
+    </script> -->
+
+    <!-- 新浪下拉菜单 -->
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .nav {
+            margin: 100px;
+        }
+        .nav>li {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 41px;
+            text-align: center;
+        }
+        .nav li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 41px;
+            color: #333;
+        }
+        .nav>li>a:hover {
+            background-color: #eee;
+        }
+        .nav ul {
+            display: none;
+            position: absolute;
+            top: 41px;
+            left: 0;
+            width: 100%;
+            border-left: 1px solid #FECC5B;
+            border-right: 1px solid #FECC5B;
+        }
+        .nav ul li {
+            border-bottom: 1px solid #FECC5B;
+        }
+        .nav ul li a:hover {
+            background-color: #FFF5DA;
+        }
+    </style>
+    <ul  class="nav">
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">微博</a>
+            <ul>
+                <li>
+                    <a href="#">私信</a>
+                </li>
+                <li>
+                    <a href="#">评论</a>
+                </li>
+                <li>
+                    <a href="#">@我</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        // 1. 获取元素
+        var nav = document.querySelector('.nav');  // 获取属性名为nav的元素赋值给nav
+        var lis = nav.children; // 用children方法返回所有子元素
+        for(var i = 0;i < lis.length;i++) {  // 遍历循环用于检测事件
+            lis[i].onmouseover = function() {  // 遍历lis里面的所有子元素，如果鼠标放在元素上
+                this.children[1].style.display = 'block'; // lis里面的第二个元素从不显示到块状元素
+            }
+            lis[i].onmouseout = function() { // 遍历lis里面的所有子元素，如果鼠标离开
+                this.children[1].style.display = 'none'; // lis中离开的li就会将lis里面的第二个元素重新设置为不可见
+            }
+        }
+    </script>    -->
+
+    <!-- 创建和添加节点 -->
+    <!-- <ul>
+        <li>123</li>
+    </ul>
+    <script>
+        // 1. 创建节点元素节点
+        var li = document.createElement('li');   // 通过createElement创建节点方法，创建节点
+        // 2. 添加节点 node.appendChild(child) node 父级 child 子级
+        var ul = document.querySelector('ul');  // 找到ul获取元素并赋值
+        ul.appendChild(li); // 通过appendChild方法添加子元素
+        ul.insertBefore(lili,ul.children[0]); // insertBefore方法是将一个子节点添加到父节点的指定子节点前面
+        // 总结：我们想要页面添加一个新的元素    1.创建元素    2.添加元素
+   </script> -->
+
+   <!-- 发布留言案例 -->
+   <!-- <style>
+       ul {
+           width: 200px;
+       }
+       ul li {
+           background-color: pink;
+       }
+       li a {
+           float: right;
+       }
+   </style>
+   <textarea name="" id="" cols="30" rows="10">123</textarea>
+   <button>发布</button>
+   <ul>
+       
+   </ul>
+   <script>
+       // 1. 获取元素
+       var btn = document.querySelector('button');
+       var text = document.querySelector('textarea');
+       var ul = document.querySelector('ul');
+       // 2. 注册事件
+       btn.onclick = function() {  // 按钮一旦被点击就执行下面的函数方法
+           // 如果输入框的内容是空那就返回假，不执行，并弹窗提示
+           if(text.value == '') {
+                alert('您没有输入内容');
+                return false;
+           }else {
+                // 1. 创建元素
+                var li = document.createElement('li'); // 文本对象模型中创建元素方法createElement创建一个小li并赋值给变量
+                // 现有li才能赋值   javascript:;阻止跳转
+                li.innerHTML = text.value + "<a href='javascript:;'>删除</a>";  // 通过innerHTML加入元素把输入框里的值赋值给它
+                // 2. 添加元素
+                // ul.qppendChild(li); 
+                ul.insertBefore(li,ul.children[0]);  // 通过insertBefore方法永远将li放在ul子节点的第一个位置
+                // 3. 删除元素 删除的是当前连接的li 它的父亲
+                var as = document.querySelectorAll('a');
+                for(var i = 0;i < as.length;i++) {
+                    as[i].onclick = function() {
+                        // node.removeChild(child); 删除的是li当前a所在的li
+                        // removeChild删除子节点    parentNode 获取父节点 
+                        ul.removeChild(this.parentNode);   // 意思就是先a元素节点的父节点，然后再获取该节点父节点，我找我自己
+                    }
+                }
+            }
+       }
+   </script> -->
+
+   <!-- 动态生成表格 -->
+   <!-- <style>
+       table {
+           width: 500px;
+           margin: 100px auto;
+           border-collapse: collapse;
+           text-align: center;
+       }
+       td,th {
+           border: 1px solid #333;
+       }
+       thead tr {
+           height: 40px;
+           background-color: #ccc;
+       }
+   </style>
+   <table>
+       <thead>
+           <tr>
+               <th>姓名</th>
+               <th>科目</th>
+               <th>成绩</th>
+               <th>操作</th>
+           </tr>
+       </thead>
+       <tbody>
+
+       </tbody>
+   </table>
+   <script>
+       // 1. 先去准备好学生的数据
+       var datas = [{  // 采取数组来存储
+           name:'卫英络',
+           subject:'javascript',
+           score:100
+       },{
+           name:'弘历',
+           subject:'javascript',
+           score:98
+       },{
+           name:'富恒',
+           subject:'javascript',
+           score:99
+       },{
+           name:'明玉',
+           subject:'javascript',
+           score:88
+       }];
+       // 2. 往tbody里面创建行 ： 有几个人我们就创建几行(通过数组的长度)
+       var tbody = document.querySelector('tbody'); // 获取到tbody元素节点
+       for(var i = 0;i < datas.length;i++) {  // 通过遍历创建行数
+            // 创建tr行
+            var tr = document.createElement('tr');  // 创建元素tr
+            tbody.appendChild(tr); // 插入元素tr
+            // 3.行里面创建单元格(跟数据有关系的三个单元格) td 单元格的数量取决于每个对象里面的属性个数 for循环遍历对象
+            for(var k in datas[i]) { // 里面的for循环管列 td
+                // 创建单元格
+                var td = document.createElement('td');  // 通过createElement创建元素节点td存入变量，创建单元格
+                // 把对象里面的属性值给 td
+                // console.log(datas[i][k]);
+                td.innerHTML = datas[i][k]; // 单元格元素接入内容通过datas数组里面的内容传入
+                tr.appendChild(td); // 把tr插入子节点td单元格
+            }
+            // 4. 创建有删除两个字的单元格
+            var td = document.createElement('td');
+            td.innerHTML = '<a href="javascript:;">删除</a>';
+            tr.appendChild(td);
+       }
+       var as = document.querySelectorAll('a');
+        for(var i = 0;i < as.length;i++) {
+            as[i].onclick = function() {
+                // node.removeChild(child); 删除的是li当前a所在的li
+                // removeChild删除子节点    获取父节点 parentNode
+                tbody.removeChild(this.parentNode.parentNode);   // 因为我们需要删除的是a元素节点的父亲单元格，因此需要用到a的父亲的父亲tbody
+            }
+        }
+   </script> -->
+
+</body>
+</html>

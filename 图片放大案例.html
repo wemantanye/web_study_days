@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 实现点击图片就会放大并且不超过盒子的效果 */
+        div {
+            overflow: hidden;
+            float: left;
+            margin: 10px;
+        }
+        div img {
+            width: 200px;
+            height: 200px;
+            transition: all 0.4s;
+        }
+        div img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div><img src="image/御mini.png" alt=""></div>
+    <div><img src="image/御mini.png" alt=""></div>
+    <div><img src="image/御mini.png" alt=""></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            /* 透视是做3d效果的基础步骤 */
+            perspective: 500px;
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+            /* 有多种写法 */
+            /* transform: translateX(100px) translateY(100px) translateZ(100px); */
+            /* 1.translateZ沿着Z轴移动，后面的单位一般跟px */
+            /* 2.translateZ(100px) 向外移动100px 也就是向我们的眼睛来移动 */
+            /* 简写方法,注意必须要带xyz参数，如果没有就写0 */
+            transform: translate3d(100px,100px,100px);
+        }
+    </style>
+<body>
+    <div></div>
+</body>
+</html>

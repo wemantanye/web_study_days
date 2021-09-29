@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 注册事件两种方式 -->
+    <!-- <button>传统注册事件</button>
+    <button>方法监听注册事件</button>
+    <script>
+       var btns = document.querySelectorAll('button');
+       // 1. 传统方式注册事件
+       // 具有唯一性，如果定义了多次的处理函数，那么只会执行后注册的处理函数
+       btns[0].onclick = function() {
+           alert('hi');
+       }
+       btns[0].onclick = function() {
+           alert('how are u'); 
+        }
+        // 2. 事件侦听注册事件 addEventListner 里面的事件类型是字符串 必定加引号 而且不带on
+        // 同一个元素 同一个事件可以添加多个侦听器(事件处理程序)
+        btns[1].addEventListener('click',function(){
+            alert(22);
+        }) 
+        btns[1].addEventListener('click',function(){
+            alert(33);
+        }) 
+    </script> -->
+
+    <!-- 删除事件 -->
+    <!-- <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        var divs = document.querySelectorAll('div');
+        console.log(divs);
+        // 1. 传统方式删除事件
+        divs[0].onclick = function() { // 获取divs伪数组里面第一个元素设置点击事件并赋值处理函数
+           alert(11);
+           divs[0].onclick = null;  // 将divs数组里面的第一个元素的时间删除也就是赋值为空
+        }
+        // 2. removeEventListener删除事件
+        divs[1].addEventListener('click',fn)  // 里面的fn不需要调用加小括号 获取divs伪数组里面第二个元素设置点击事件并赋值处理函数
+        function fn() { 
+            alert(22);  
+            divs[1].removeEventListener('click',fn);  // removeEventListener删除事件 
+        }
+    </script> -->
+
+    <!-- dom事件流验证 -->
+    <!-- <style>
+        .father {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+        .son {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            /* 水平居中代码如下 */
+            top: 50%;
+            left: 50%;
+            margin-top: -25px;
+            margin-left: -25px;
+        }
+    </style>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        // dom 事件流  三个阶段
+        // 1. js代码中只能执行捕获或者冒泡其中的一个阶段
+        // 2. onclick 和 attachEvent(ie) 只能得到冒泡阶段
+        // 3. 捕获阶段 如果addEvenListener 第三个参数是 true 那么则处于捕获阶段
+        // 捕获阶段中 document -> html -> body -> father -> son
+        // 所以在下面的案例中，即便优先找的是son元素，但也会因为捕获的优先顺序先输出father
+        var son = document.querySelector(".son");
+        son.addEventListener("click",function() {
+            alert("son");
+        },true);
+        var father = document.querySelector(".father");
+        father.addEventListener("click",function() {
+            alert("father");
+        },true);
+        // 4. 冒泡阶段 如果addEventLister 第三个参数是 false 或者省略 那么就处于冒泡极端
+        // son -> father -> body -> html -> document
+        // 所以在下面的案例中，会先输出son处理函数再处理father     
+        var son = document.querySelector(".son");
+        son.addEventListener("click",function() {
+            alert("son");
+        },false);
+        var father = document.querySelector(".father");
+        father.addEventListener("click",function() {
+            alert("father");
+        },false);
+    </script> -->
+
+    <!-- target和this区别 -->
+    <!-- <div>123</div>
+    <ul>
+        <li>abc</li>
+        <li>abc</li>
+        <li>abc</li>
+    </ul>
+    <script>
+        // 常见事件对象的属性和方法
+        // 1. e.target 返回的触发事件的对象（元素） 
+        // 区别：e.target 点击了那个元素，就返回那个元素   this 那个元素绑定了这个点击事件，那么就返回谁
+        var div = document.querySelector('div');
+        div.addEventListener("click",function(e) {
+            console.log(e.target);
+        })
+        // 2. this返回的是绑定事件的对象(元素)
+        var ul =document.querySelector('ul');
+        ul.addEventListener("click",function(e) {
+                // 我们给ul绑定了事件 那么this就指向ul
+                console.log(this);
+                // e.target 指向我们点击的那个对象 谁触发了这个事件 我们点击的是li e.target 指向的就是li
+                console.log(e.target);   
+            })
+            // 3. 了解  跟this有个非常相似的属性 currentTarget  ie678不认识
+    </script> -->
+
+    <!-- 返回事件类型以及阻止事件发生 -->
+    <!-- <div>123</div>
+    <a href="http://baidu.com">百度</a>
+    <form action="http://www.baidu.com">
+        <input type="submit" value="提交" name="sub">
+    </form>
+    <script>
+        // 常见的事件对象的属性和方法
+        // 1. 返回事件类型
+        var div = document.querySelector('div');
+        div.addEventListener("click",fn);
+        div.addEventListener("mouseover",fn);
+        div.addEventListener("mouseout",fn);
+        function fn(e) {
+            // e.type 返回事件的类型 比如 click等
+            console.log(e.type);
+        }
+        // 2. 阻止默认行为（事件） 让链接不跳转 或者让提交按钮不提交
+        var a = document.querySelector('a');
+        a.addEventListener("click",function(e) {
+            // e.preventDefault 阻止默认事件发生,那就阻止了百度的连接跳转了
+            e.preventDefault(); // dom标准写法 
+        }) 
+        // 3. 传统的注册方式
+        a.onclick = function(e) {
+            // 普通浏览器 e.preventDefault(); 方法
+            // e.preventDefault();
+            // 也可以利用 return false 阻止默认行为且没有兼容问题
+            // 特点就是 return 后面的代码不执行了 而且只限于传统的注册方式
+            return false;
+        }
+    </script> -->
+
+    <!-- 阻止事件冒泡 -->
+    <!-- <style>
+    .father {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+        margin: 100px auto;
+    }
+    .son {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        /* 水平居中代码如下 */
+        top: 50%;
+        left: 50%;
+        margin-top: -25px;
+        margin-left: -25px;
+    }
+    </style>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        // dom 事件流  三个阶段
+        // 1. js代码中只能执行捕获或者冒泡其中的一个阶段
+        // 2. onclick 和 attachEvent(ie) 只能得到冒泡阶段
+        // 3. 捕获阶段 如果addEvenListener 第三个参数是 true 那么则处于捕获阶段
+        // 捕获阶段中 document -> html -> body -> father -> son
+        // 所以在下面的案例中，即便优先找的是son元素，但也会因为捕获的优先顺序先输出father
+        // var son = document.querySelector(".son");
+        // son.addEventListener("click",function(e) {
+        //     alert("son");
+        // },true);
+        // var father = document.querySelector(".father");
+        // father.addEventListener("click",function() {
+        //     alert("father");
+        // },true);
+        // 4. 冒泡阶段 如果addEventLister 第三个参数是 false 或者省略 那么就处于冒泡极端
+        // son -> father -> body -> html -> document
+        // 所以在下面的案例中，会先输出son处理函数再处理father     
+        var son = document.querySelector(".son");
+        son.addEventListener("click",function(e) {
+            alert("son");
+            // 如果要阻止事件冒泡
+            // stopPropagation 标准 阻止冒泡排序  如果使用该方法那么输出了son之后就不再输出father了，因为冒泡中断了
+            e.stopPropagation(); // stop 停止 propagation 传播 
+        },false);
+
+
+        var father = document.querySelector(".father");
+        father.addEventListener("click",function(e) {
+            // father元素因为没有使用stopPropagation停止冒泡，所以会往上继续执行
+            alert("father");
+        },false);
+        document.addEventListener('click',function() {
+            alert("document");
+        })
+    </script> -->
+
+    <!-- 事件委托 -->
+    <!-- <ul>
+        <li>知否知否</li>
+        <li>知否知否</li>
+        <li>知否知否</li>
+        <li>知否知否</li>
+        <li>知否知否</li>
+    </ul>
+    <script>
+        // 事件委托的核心原理：给父节点添加侦听器，利用事件冒泡影响到每一个子节点
+        var ul = document.querySelector('ul');
+        ul.addEventListener("click",function(e) {
+            // alert("知否知否");
+            // 排他思想的应用 这样就可以实现多个li改变颜，只有一个颜色被改变
+            var li = ul.children;
+            for(var i = 0;i < li.length;i++) {
+                li[i].style.backgroundColor = '';
+            }
+            // e.target 会直接找到点击事件触发的对象，那么因为冒泡会找到ul，那么ul就会触发侦听时间，直接找到相应的小li元素
+            // console.log(e.target);
+            e.target.style.backgroundColor = 'pink';
+        },false);
+    </script> -->
+
+    <!-- 禁止右键菜单和禁止选中文字事件 -->
+    <!-- 我是一段不愿意分享的文字
+    <script>
+        // 1. contextmenu 禁用右键菜单
+        document.addEventListener('contextmenu',function(e) {
+            // 阻止事件
+            e.preventDefault();
+        })
+        // 2. selectstart 禁止选中文字 
+        document.addEventListener('selectstart',function(e) {
+            // 阻止事件
+            e.preventDefault();
+        })
+    </script> -->
+
+    <!-- 获得鼠标在页面中x和y坐标 -->
+    <!-- <script>
+        // 鼠标事件对象 MouseEvent
+        document.addEventListener('click',function(e) {
+            // 1. client 鼠标在可视区的x和y坐标
+            console.log(e.clientX);
+            console.log(e.clientY);
+
+            // 2. page 鼠标在文档页面整体的x和y坐标  最常用
+            console.log(e.pageX);
+            console.log(e.pageY);
+
+            // 3. screen 鼠标在电脑屏幕的x和y坐标
+            console.log(e.screenX);
+            console.log(e.screenY);
+        })
+    </script> -->
+
+    <!-- 跟随鼠标的天使 -->
+    <!-- <style>
+        img {
+            /* 加上绝对定位，这样可以让img不占位置 */
+            position: absolute; 
+        }
+    </style>
+    <img src="../image/angel.gif" alt="">
+    <script>
+        var img = document.querySelector('img');
+        document.addEventListener('mousemove',function(e) {
+            // 1. mousemove 只要我们鼠标移动1px就会触发这个事件
+            // 2. 核心原理： 每次鼠标移动 ，我们都会获得最新的鼠标坐标，把这个x和y坐标作为图片的top和left值就可以移动图片
+            var x = e.pageX;
+            var y = e.pageY;
+            console.log('x坐标是:' + x + ' ' +  'y的坐标是:' + y);
+            // 因为x和y获取的是数值没有带单位，所以需要手动添加px单位
+            img.style.left = x - 40 + 'px';
+            img.style.top = y - 40 + 'px';
+        })
+    </script> -->
+
+    <!-- 常用键盘事件 -->
+    <!-- <script>
+        // 1. keyup 按键弹起的时候触发
+        // document.onkeyup = function() {
+        //     console.log('我弹起了');
+        // }
+        document.addEventListener('keyup',function() {
+            console.log('我弹起了up');
+        })
+        // 2. keydown 按键按下的时候触发  可以识别功能键
+        document.addEventListener('keydown',function() {
+            console.log('我按下了down');
+        })
+        // 3. keypress 按键按下的时候触发 !!不能识别功能键 比如 ctrl shift等
+        document.addEventListener('keypress',function() {
+            console.log('我按下了press');
+        })
+        // 4. 三个事件的执行顺序 keydown -> keypress -> keyup
+    </script> -->
+
+    <!-- 键盘事件对象中的keyCode -->
+    <!-- <script>
+        // 1. 我们的keyup 和 keydown事件不分大小写 a 和 A得到的都是65 但是可以识别所有的键（包括功能键）
+        // 2. 我们的keypress 事件 区分字母大小写 a 97 和A 65 （不识别功能键，但是能够区分大小写，返回不同的Ascll码值）
+        document.addEventListener('keyup',function(e) {
+            console.log('up' + e.keyCode);
+            if(e.keyCode === 65) {
+                alert('你按下了a键');
+            }else{
+                alert('你没有按下a键');
+            }
+        });
+        document.addEventListener('keypress',function(e) {
+            console.log('press' + e.keyCode);
+        });
+    </script> -->
+
+    <!-- 模拟按键输入内容案例 -->
+    <!-- <input type="text">
+    <script>
+        // 核心思路：监测用户是否按下了s也就是serach，如果按下了s键，就把光标定位到搜索框里面
+        // 使用键盘事件对象里面的keycode 判断是否用户按下的是s键盘
+        // 如果是s键，那么就是用js里面的focus()方法将光标定位到input框中
+        var search = document.querySelector('input');
+        // 因为keyup事件是抬起键才触发，所以说就不会提前触发处理函数，这样就不会把输入的键盘s带到input框中
+        document.addEventListener('keyup',function(e) {
+            // console.log(e.keyCode);
+            if(e.keyCode === 83) {
+                search.focus();
+            }
+        });
+    </script> -->
+
+    <!-- 模拟jd快递单号查询 -->
+    <!-- <style>
+        .con {
+            display: none;
+        }
+    </style>
+    <div class="search">
+        <div class="con">123</div>
+        <input type="text" placeholder="请输入你的快递单号" class="jd">
+    </div>
+    <script>
+        var con = document.querySelector('.con');
+        var input = document.querySelector('.jd');
+        // 给表单添加一个键盘事件，如果有键按下弹起来，那么就执行下面的执行函数
+        input.addEventListener('keyup',function() { // 因为必须要传递键盘输入所以要用keyup等到文本输入后再触发事件
+            // console.log('输入内容啦');
+            if(this.value == '') {
+                con.style.display = 'none'  // 如果表单里面没有键盘输入那么就不显示div
+            }else{
+                con.style.display = 'block' // 如果表单里面有键盘输入那么就显示div
+                con.innerText = this.value; // 通过innerText方法将输入的文本传入到div中
+            }
+        })
+        // 当我们失去焦点，就隐藏这个con盒子
+        input.addEventListener('blur',function() {
+            con.style.display = 'none';
+        })
+        // 当我们获得焦点，就显示这个盒子
+        input.addEventListener('focus',function() {
+            if(this.value != ''){
+                con.style.display = 'block';
+            }else {
+                con.style.display = 'none';
+            }
+        })
+    </script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

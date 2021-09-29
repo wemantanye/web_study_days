@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 必须是input，但是得有value属性的元素 */
+        input[value] {
+            color: blue;
+        }
+        /* 选择input中type=password的选择出来修改颜色 */
+        input[type=password] {
+            color: pink;
+        }
+        /* 通过正则表达式选择对应属性值开头的元素 */
+        div[class^=abc] {
+            color: brown;
+        }
+        /* 通过正则表达式选择对应属性值结尾的元素 */
+        div[class$=abc]{
+            color: cyan;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1.利用属性选择器就可以不借助类和id选择器 -->
+    <input type="text" value="请输入用户名">
+    <input type="text">
+    <!-- 2.属性选择器还可以选择属性=值的某些元素，务必掌握 -->
+    <input type="text" name="" id="">
+    <input type="password" name="" id="">
+    <!-- 3.属性选择器还可以选择属性值开头的元素 -->
+    <div class="abc-a">11</div>
+    <div class="abc-b">22</div>
+    <div class="cba">33</div>
+    <!-- 3.属性选择器还可以选择属性值结尾的元素 -->
+    <div class="a-abc">44</div>
+    <div class="b-abc">55</div>
+    <div class="bac">66</div>
+</body>
+</html>

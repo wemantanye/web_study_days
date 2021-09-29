@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            /* 清除文本格式 */
+            list-style: none;
+        }
+        /* 使用结构伪类选择器，匹配父元素的第一个子元素 */
+        ul li:first-child {
+            color: cyan;
+        }
+        /* 匹配父元素的最后一个元素 */
+        ul li:last-child {
+            color: darksalmon;
+        }
+        /* 匹配父元素的第n个元素，n自己定 */
+        ul li:nth-child(2) {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>我是第1个孩子</li>
+        <li>我是第2个孩子</li>
+        <li>我是第3个孩子</li>
+        <li>我是第5个孩子</li>
+        <li>我是第6个孩子</li>
+        <li>我是第7个孩子</li>
+        <li>我是第8个孩子</li>
+        <li>我是第9个孩子</li>
+    </ul>
+</body>
+</html>

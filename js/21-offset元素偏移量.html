@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- offsetLeft和offsetTop获取元素偏移  offsetParent 返回父级元素 -->
+    <!-- <style>
+        .father {
+            /* 如果要得到相对父级的偏移量，那么son的父级也就是father必须要加定位 */
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 100px;
+            background-color: pink;
+        }
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: purple;
+            margin: 45px;
+        }
+    </style>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        // 1. 获取元素
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        // 2. 获取元素偏移
+        console.log(father.offsetLeft);
+        console.log(father.offsetTop);
+        // 它以带有定位的父亲为准 如果木有付清或者付清没有点位，则以body为准
+        console.log(son.offsetLeft);
+        console.log(son.offsetLeft);
+        // 3. 返回带有定位的付清 否则返回的是body
+        console.log(son.offsetParent); // 返回带有定位的付清
+        console.log(son.parentNode); // 返回付清 是最近一级的付清 亲爸爸 不管父亲有没有定位
+    </script> -->
+
+    <!-- offsetWidth 和 offsetHeight  -->
+    <!-- <style>
+        .w {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: #ccc;
+        }
+    </style>
+    <div class="w"></div>
+    <script>
+        // 1. 得到元素的大小 宽度和高度 且是包含padding + border + width
+        var w = document.querySelector('.w');
+        console.log(w.offsetWidth);
+        console.log(w.offsetHeight);
+    </script> -->
+    
+    <!-- 获取鼠标在盒子内的位置 -->
+    <!-- <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: #ccc;
+        }
+    </style>
+    <div class="box"></div>
+    <script>
+        // 我们在盒子内点击，想要得到鼠标距离盒子左右的距离
+        // 首先得到鼠标在页面中的坐标(e.pagex  e.pagey)
+        // 其次得到盒子在页面中的距离(box.offsetLeft  box.offsetTop)
+        // 用鼠标距离页面的坐标减去盒子在页面中的距离，得到鼠标在盒子内的坐标
+        var box = document.querySelector('.box');
+        box.addEventListener('mousemove',function(e) {
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            this.innerHTML = 'x坐标是' + x + 'y坐标是' + y;
+        })
+    </script> -->
+
+    <!-- 模态框(登录框)的拖拽 -->
+    <!-- <style>
+        ul,
+        li,
+        ol,
+        dl,
+        dt,
+        dd,
+        div,
+        p,
+        span,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        a {
+            padding: 0px;
+            margin: 0px;
+        }
+        .login-header {
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 24px;
+        }
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+        .login {
+            display: none;
+            width: 512px;
+            height: 280px;
+            /* 生成绝对定位的元素，相对于浏览器窗口进行定位 */
+            position: fixed;
+            border: #ebebeb solid 1px;
+            left: 50%;
+            top: 50%;
+            background: #ffffff;
+            box-shadow: 0px 0px 20px #ddd;
+            z-index: 9999;
+            transform: translate(-50%,-50%);
+        }
+        .login-title {
+            width: 100%;
+            margin: 10px 0px 0px 0px;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            position: relative;
+            cursor: move;
+        }
+        .login-input-content {
+            margin-top: 20px;
+        }
+        .login-bg {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background: rgba(0,0,0,.3);
+        }
+        .login-button {
+            width: 50%;
+            margin: 30px auto 0px auto;
+            line-height: 40px;
+            text-align: center;
+            border: #ebebeb 1px solid;
+        }
+        .login-button a {
+            display: block;
+        }
+        .login-input input.list-input {
+            float: left;
+            line-height: 35px;
+            height: 35px;
+            width: 350px;
+            border: #ebebeb 1px solid;
+            text-indent: 5px;
+        }
+        .login-input {
+            overflow: hidden;
+            margin: 0px 0px 20px 0px;
+        }
+        .login-input label {
+            float: left;
+            width: 90px;
+            padding-right: 10px;
+            text-align: right;
+            height: 35px;
+            line-height: 35px;
+            font-size: 14px;
+        }
+        .login-title span {
+            position: absolute;
+            font-size: 12px;
+            right: -20px;
+            top: -30px;
+            background: #ffffff;
+            border: #ebebeb solid 1px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+        }
+    </style>
+    <div class="login-header">
+        <a href="#" id="link">点击，弹出登录框</a>
+    </div>
+    <div id="login" class="login">
+        <div id="title" class="login-title">登录会员
+            <span><a id="closeBtn" href="#" class="close-login">关闭</a></span>
+        </div>
+        <div class="login-input-content">
+            <div class="login-input">
+                <label>用户名:</label>
+                <input type="text" name="info[username]" placeholder="请输入用户名" id="username" class="list-input">
+            </div>
+            <div class="login-input">
+                <label>登陆密码</label>
+                <input type="password" name="info[password]" id="password" placeholder="请输入登陆密码" class="list-input">
+            </div>
+        </div>
+        <div class="login-button" id="loginBtn">
+            <a href="#" id="login-button-submit">登录会员</a>
+        </div>
+    </div>
+    <div class="login-bg" id="bg"></div> 
+    <script>
+        // 1. 获取元素
+        var login = document.querySelector('.login');  // 获取整体登录界面的元素
+        var mask = document.querySelector('.login-bg'); // 获取背景遮罩层的元素
+        var link =document.querySelector('#link');  // 获取登录链接文本的元素
+        var closeBtn = document.querySelector('#closeBtn');  // 获取关闭按钮元素
+        var title = document.querySelector('#title'); // 获取登陆会员大标题的元素
+        // 2. 点击弹出层这个链接 link 让mask和login显示出来
+        link.addEventListener('click',function() { // 给link这个文本链接设置监听事件，每当点击的时候就让登录框和遮罩层显示
+            mask.style.display = 'block';
+            login.style.display = 'block';         
+        })
+        // 3. 点击 closeBtn 就隐藏 mask 和 login
+        closeBtn.addEventListener('click',function() { // 给关闭按钮设置监听事件，每当点击关闭按钮，就让登录框和遮罩层不显示
+            mask.style.display = 'none';
+            login.style.display = 'none';         
+        })
+        // 4. 开始拖拽功能的实现
+        // (1) 当我们鼠标按下，就获得鼠标再盒子内的坐标
+        title.addEventListener('mousedown',function(e) { // 标题文本设置监听事件，鼠标按下就激发执行函数
+            var x = e.pageX - login.offsetLeft; // 标题框占整体页面的位置page.x减去整个登录框的left值就是登录框的left值
+            var y = e.pageY - login.offsetTop;  // 标题框占整体页面的位置page.y减去整个登录框的top值就是登录框的top值
+            // (2) 鼠标移动的时候，把鼠标在页面中的坐标，减去鼠标在盒子内的坐标就是模态框的left和top值
+            document.addEventListener('mousemove',move);
+            function move(e) {
+                login.style.left = e.pageX - x + 'px';
+                login.style.top = e.pageY - y + 'px';
+            }
+            // (3) 鼠标弹起，就让鼠标移动事件移除
+            document.addEventListener('mouseup',function() {
+                document.removeEventListener('mousemove',move);
+            })
+        })
+    </script> -->
+
+    <!-- 立即执行函数 -->
+    <!-- <script>
+        // 1. 立即执行函数：不需要调用，立马能够自己执行的函数
+        // 普通执行函数
+        function fn() {
+            console.log(1);
+        }
+        fn();
+        // 写法
+        // 第一种写法
+        (function() {
+            console.log(2);
+        })(); // ()看作相当于调用函数
+        // 第二种写法
+        (function(a,b){
+            console.log(a+b);
+        }(1,2));   // ()看作是调用函数
+    </script> -->
+
+    <!-- scroll系列 -->
+    <!-- <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            overflow: auto;
+        }
+    </style>
+    <div>
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+        我是内容
+    </div>
+    <script>
+        // scroll 系列  
+        var div = document.querySelector('div');
+        console.log(div.scrollHeight);
+        console.log(div.clientHeight);
+        // scroll 滚动事件 当我们滚动条发生变化会触发的事件
+        div.addEventListener('scroll',function() {
+            console.log(div.scrollTop); // scrollTop 在滚动条中被卷去的高度
+        })
+    </script> -->
+
+    <!-- 仿淘宝固定侧边栏 -->
+    <style>
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+        .sliderbar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+        .header {
+            height: 200px;
+            background-color: purple;
+        }
+        .banner {
+            height: 300px;
+            background-color: skyblue;
+        }
+        .main {
+            height: 500px;
+            background-color: green;
+        }
+    </style>
+    <div class="sliderbar">
+        <span class="goback">返回顶部</span>
+    </div>
+    <div class="header w">header</div>
+    <div class="banner w">banner</div>
+    <div class="main w">main</div>
+    <script>
+        // 1. 需要用到页面滚动事件 scroll 因为是页面滚动 所以事件源是document
+        // 2. 滚动到某个位置，就是判断页面被卷曲的上部值
+        // 3. 页面被卷曲的头部，可以通过window.pageYoffset 获得  如果是被卷去的左侧 window.pageXoffset
+        // 注意：元素被卷起的头部是element.scrollTop，如果是页面被卷去的头部则是window.pageYoffset
+        // 获取元素
+        var sliderbar = document.querySelector('.sliderbar');
+        var banner = document.querySelector('.banner');
+        // 被卷去头部的大小，一定要写到滚动的外面
+        var bannerTop = banner.offsetTop;
+        // 当我们侧边栏固定定位应该变化的数值
+        var sliderbarTop = sliderbar.offsetTop - bannerTop;
+        // 获取main主体元素
+        var main = document.querySelector('.main');
+        var goBack = document.querySelector('.goback');
+        var mainTop = main.offsetTop;
+        // 页面滚动事件 scroll
+        document.addEventListener('scroll',function() {
+            // console.log(window.pageYOffset); 
+            if(window.pageYOffset >= bannerTop) {
+                sliderbar.style.position = 'fixed';
+                sliderbar.style.top = sliderbarTop + 'px';
+            }else {
+                sliderbar.style.position = 'absolute';
+                sliderbar.style.top = '300px'
+            }
+            // 当我们页面滚动到main盒子，就显示goback模块
+            if(window.pageYOffset >= mainTop) {
+                goBack.style.display = 'block';
+            }else {
+                goBack.style.display = 'none';
+            }
+        })
+        // span点击事件，返回页面最上方
+        goBack.addEventListener('click',function() {
+            
+        })
+    </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <!-- 定时器的语法规范 -->
+    <!-- <script>
+        // 1. setTimeout
+        // 语法规范  window.setTimeout(调用函数，延时事件);
+        // 1. 这个window在调用的时候可以省略
+        // 2. 这个延时时间单位是毫秒 但是可以省略 如果省略默认的是0
+        // 3. 这个调用函数可以直接写函数 还可以写 函数名 还有一个写法'函数名()'
+        setTimeout(function() {
+           console.log('时间到了'); 
+        },2000);
+
+        function callback() {
+            console.log('爆炸了');
+        }
+        setTimeout(callback,3000);
+    </script> -->
+
+    <!-- 广告五秒关闭案例 -->
+    <!-- <img src="../image/ad.jpg" alt="" class="ad">
+    <script>
+        var ad = document.querySelector('.ad');
+        // setTimeout 设置定时器五秒后就将img隐藏
+        setTimeout(function() {
+            ad.style.display = 'none';
+        },5000)  // 5000ms
+    </script> -->
+
+    <!-- 点击停止定时器 clearTimeout -->
+    <!-- <button>点击停止定时器</button>
+    <script>
+        var btn = document.querySelector('button');
+        // 给定时器最好起个名字，方便后续调用操作等
+        var timer =setTimeout(function() {
+            console.log('爆炸了');
+        },5000)
+        btn.addEventListener('click',function() {
+            // clearTimeout 方法取消了建立的定时器
+            clearTimeout(timer);  // 通过此方法让timer这个定时器执行函数不被执行
+        })
+    </script> -->
+
+    <!-- 定时器 setInterval -->
+    <!-- <script>
+        // 1. setInterval 
+        // 语法规范: window.setInterval(调用函数，延时时间)
+        setInterval(function() {
+            console.log('继续输出');
+        },1000)
+        // 2. setInterval 每隔这个延时时间，就去调用这个回调函数，会调用很多次，重复调用这个函数
+    </script> -->
+
+    <!-- 倒计时案例 -->
+    <!-- <style>
+        div {
+            width: 300px;
+            height: 100px;
+        }
+        span {
+            float: left;
+            width: 80px;
+            height: 50px;
+            background-color: #111;
+            line-height: 50px;
+            color: white;
+            margin: 0 5px;
+            text-align: center;
+        }
+    </style>
+    <div>
+        <span class="hours">1</span>
+        <span class="minutes">2</span>
+        <span class="seconds">3</span>
+    </div>
+    <script>
+        // 1. 获取元素
+        var hours = document.querySelector('.hours');
+        var minutes = document.querySelector('.minutes');
+        var seconds = document.querySelector('.seconds');
+        // 2. 获取需要倒计时的时间并赋值给span
+        var inputTime = +new Date('2021-9-1 23:07:00') // 返回的是用户输入时间的总的毫秒数
+        conutDown(); // 我们先调用一次这个函数，防止第一次刷新页面有空白
+        // 3. 开启定时器
+        setInterval(conutDown,1000);
+        function conutDown() {
+            var nowTime = +new Date();
+            var times = (inputTime - nowTime) / 1000;
+            // 小时数
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            hours.innerHTML = h; // 把剩余的小时给 小时黑色盒子
+            // 分钟数
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            minutes.innerHTML = m; // 把剩余的分钟数 小时黑色盒子
+            // 秒钟数
+            var s = parseInt(times % 60);
+            s = s < 10 ? '0' + s : s;
+            seconds.innerHTML = s; // 把剩余的秒钟数 小时黑色盒子
+        }
+    </script> -->
+
+    <!-- 停止 clearInterval(IntervalID) -->
+    <!-- <button class="begin">开启定时器</button>
+    <button class="stop">停止定时器</button>
+    <script>
+        var begin = document.querySelector('.begin');
+        var stop = document.querySelector('.stop');
+        // 给一个全局变量，方便给clearInterval id
+        var timer = null; // 全局变量，null是一个空对象
+        // 开启定时器
+        begin.addEventListener('click',function() {
+            timer = setInterval(function() {
+                console.log('how are you?');
+            },1000);
+        })
+        // 停止定时器
+        stop.addEventListener('click',function() {
+            clearInterval(timer);
+        })
+    </script> -->
+
+    <!-- 发送短信验证码点击按钮案例 -->
+    <!-- 手机号码: <input type="number"> <button>发送</button>
+    <script>
+        // 按钮点击之后，会禁用disabled 为 true
+        // 同时按钮里面的内容会变化，注意button里面的内容通过innerHTML修改
+        // 里面的秒数是有变化的，因此需要用到定时器
+        // 如果变量为0 说明到了时间，我们需要停止定时器 并且复原按钮初始状态
+        var btn = document.querySelector('button');
+        var seconds = 5;
+        btn.addEventListener('click',function() {
+            btn.disabled = true; // 让btn不可点击
+            // 开启定时器 每隔1s触发执行函数
+            var timer = setInterval(function() {
+                // 设置判断语句，如果说倒计时到了0s那么就把更改的设置全部恢复
+                if(seconds == 0) {
+                    // 清除定时器和复原按钮
+                    clearInterval(timer);
+                    btn.innerHTML = '发送';
+                    btn.disabled = false;  // 让btn可点击
+                    seconds = 5;  // 重新设定一个倒计时
+                }else {
+                    btn.innerHTML = '还剩下'+ seconds + '秒';  // 通过innerHTML改变btn中的文本内容
+                    seconds--; // 自减1，一次构成倒计时
+                }
+            },1000)
+        })
+    </script> -->
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css三角的效果实现方法 */
+        .jdsj {
+            position: relative;
+            width: 50px;
+            height: 80px;
+            background-color: pink;
+            margin: 50px auto;
+            
+        }
+        span {
+            position: absolute;
+            width: 0;
+            height: 0;
+            /* 因为三角整体是由四个三角组成的，因此长就为边框设置的两倍，就是20px，还剩下30px，居中就对半分，向右移动15px */
+            right: 15px;
+            top: -20px;
+            line-height: 0;
+            font-size: 0;
+            border: 10px solid transparent;
+            border-bottom-color: pink;
+        }
+    </style>
+<body>
+    <div class="jdsj">
+        <span></span>
+    </div>
+</body>
+</html>

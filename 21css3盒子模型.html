@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            /* 如果box-sizing属性为默认的conten-box那么盒子大小为padding+border+width */
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            border: 20px solid red;
+            box-sizing: content-box;
+        }
+        p {
+            /* 如果box-sizing属性为border-box那么就会限定盒子大小width，不会撑大盒子 */
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            border: 20px solid red;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        小猪乔治
+    </div>
+    <p>
+        小猪佩奇
+    </p>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1.函数求和和两数之间的和 -->
+    <!-- <script>
+        //1.利用函数求任意两个数的和
+        function sum1(num1,num2) {
+            console.log(num1+num2);
+        }
+        sum1(1,2);
+        //2.利用函数求任意两个数之间的和
+        var sum2 = 0;
+        function getSum(num1,num2) {
+            for(i = num1+1;i < num2;i++){
+                sum2 += i;   
+            }
+            console.log(sum2);
+        }
+        getSum(1,5);
+    </script> -->
+
+    <!-- 2.函数求任意两数的最大值 -->
+    <!-- <script>
+        function max(num1,num2) {
+            // 1.比较方法
+            if(num1 > num2){
+                console.log(num1);
+            }else{
+                console.log(num2);
+            }
+            // 2.三元运算符
+            return num1 > num2 ? num1 : num2;
+        }
+        max(1,10); -->
+
+    <!-- 3.求数组中的最大值 -->
+    <!-- <script>
+        function getArrayMax(arr) {
+            var max = arr[0];
+            for(var i = 1;i <= arr.length;i++) {
+                if(arr[i] > max) {
+                    max = arr[i];
+                }
+            }
+            return max;
+        }
+        // console.log(getArrayMax([5,2,47,56,55,1])); // 这是比较复杂的表达方式
+        var re = getArrayMax([5,2,47,56,55,1]); // 赋值给变量方便维护
+        console.log(re);
+    </script> -->
+
+    <!-- 4.函数输入两数字的任意算数运算 -->
+    <!-- <script>
+        var num1 = prompt('请输入数字');
+        var arithmetic_sign = prompt('请输入运算符号');
+        var num2 = prompt('请输入第二个数字');
+        function getSum(num1,arithmetic_sign,num2) {
+            switch(arithmetic_sign) {
+                case '*':
+                    return num1*num2;
+                    break;
+                case '/':
+                    return num1/num2;
+                    break;
+                case '+':
+                    return num1+num2;
+                    break;
+                case '-':
+                    return num1-num2;
+                    break;
+                default:
+                    alert('你输入的格式有误');
+            }
+        }
+        var result = getSum(parseFloat(num1),arithmetic_sign,parseFloat(num2));
+        alert('通过计算您得到的答案是:' + result);
+    </script> -->
+
+    <!-- 5.函数求素数 -->
+    <!-- <script>
+        //利用函数求任意个数的最大值
+        function getMax() {
+            var max = arguments[0];
+            for (var i = 1;i < arguments.length;i++) {
+                if(arguments[i] > max) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+        console.log(getMax(1,2,3));
+        console.log(getMax(1,3,5));
+        console.log(getMax(3,2,1));
+    </script> -->
+        
+    <!-- 6.函数翻转数组 -->
+    <!-- <script>
+        // 利用函数反转任意数组 reverse 翻转
+        function reverse(arr) {
+            var newArr = [];
+            for (var i = arr.length - 1;i >= 0;i--) {
+                newArr[newArr.length] = arr[i];
+            }
+            return newArr;
+        }
+        var arr1 = reverse([1,2,3,4,5]);
+        console.log(arr1);
+    </script> -->
+
+    <!-- 7.函数封装冒泡排序 -->
+    <!-- <script>
+    function sort(arr) {
+        for(i = 0;i <= arr.length - 1;i++) {
+            for(j = 0;j <= arr.length - i - 1;j++) {
+                //交换变量的操作
+                if(arr[j] > arr[j+1]){
+                    var temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        } 
+        return arr;
+    }
+    var arr1 = sort([1,9,8,4,5,0,2]);
+    console.log(arr1);
+    </script> -->
+
+    <!-- 8.通过函数判断闰年平年 -->
+    <!-- <script>
+        function isRunYear(year) {
+            var flag = false;
+            if(year % 4 == 0 && year % 100 != 0 || year % 400 ==0) {
+                flag = true;
+            }
+            return flag;
+        }
+        console.log(isRunYear(2020));
+
+        function backDay() {
+            var year = prompt('请您输入年份:');
+            if(isRunYear(year)) {
+                alert('当前年份是闰年2月份有29天')
+            }else {
+                alert('当前年份是平年2月份有28天')
+            }
+        }
+        backDay();
+    </script> -->
+
+    <!-- 9.构造函数创建对象 -->
+    <!-- <script>
+        // 1.构造函数名字首字母要大写
+        // 2.我们构造函数不需要return 就可以返回结果
+        function Star(uname,age,sex) {
+            this.name = uname;
+            this.age = age;
+            this.sex = sex;
+        }
+        var ldh = new Star('刘德华',18,'男'); //调用函数返回的是一个对象
+        console.log(typeof ldh); 
+        console.log(ldh.sex);
+        console.log(ldh['age']);
+    </script> -->
+
+    <!-- 10.封装数学对象的应用 -->
+    <!-- <script>
+        var myMath = {
+            PI: 3.141592653,
+            max:function() {
+                var max = arguments[0];
+                for(var i = 1;i < arguments.length;i++){
+                    if(arguments[i] > max){
+                        max = arguments[i];
+                    }
+                }
+                return max;
+            },
+            min:function() {
+                var min = arguments[0];
+                for(var i = 1;i < arguments.length;i++){
+                    if(arguments[i] < min){
+                        min = arguments[i];
+                    }
+                }
+                return min;
+            }
+        }
+        console.log(myMath.PI);
+        console.log(myMath.max(1,5,9));
+        console.log(myMath.min(1,5,9));
+    </script> -->
+
+    <!-- 11.随机数方法 -->
+    <!-- <script>
+        // 随机数的调用方法,但是这样只是取用[0-1)范围内的数字  
+        console.log(Math.random());
+        // 自定义写随机函数
+        function getRandom(min,max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        console.log(getRandom(1,10));
+        // 随机点名
+        var arr = ['张三','李四','王五','刘六','马七','吴八'];
+        console.log(arr[getRandom(0,arr.length - 1)]);
+    </script> -->
+
+    <!-- 12.猜数字游戏 -->
+    <!-- <script>
+        function getRandom(min,max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        var ran = getRandom(1,50);
+        var i = 10;
+        while(i--) { //死循环
+            var num = prompt('请输入一个1-50的数字:');
+            if(ran < num) {
+                alert('数字大了')
+            }else if(ran > num){
+                alert('数字小了')
+            }else {
+                alert('猜对了');
+                break;
+            }
+        }
+    </script> -->
+
+    <!-- 格式化日期 年月日 -->
+    <!-- <script>
+        // var date = new Date();
+        // console.log(date.getFullYear());
+        // console.log(date.getMonth()+1); //月份需要加一
+        // console.log(date.getDate());
+
+        // 写一个固定格式的年月日包括日期
+        var date = new Date();
+        var year = date.getFullYear(); //年
+        //因为在js中从0开始到11月份共计十二个月，因此需要在返回的结果上再加1
+        var month = date.getMonth() + 1;  // 月
+        var dates = date.getDate(); // 日
+        //因为js中星期的返回值是从星期日开始为0，所以创建一个数组
+        var arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        var day = date.getDay(); //星期几
+        console.log('今天是:' + year + '年' + month + '月' + dates + '日' + arr[day]);
+    </script> -->
+
+    <!-- 格式化日期 时分秒 -->
+    <!-- <script>
+        //封装一个函数用来直接表现
+        function getTime() {
+            var time = new Date();
+            var h = time.getHours();
+            //利用三元表达式就可以实现如果是个位数在前面自动补零
+            h = h < 10 ? '0' + h : h;
+            var m = time.getMinutes();
+            m = m < 10 ? '0' + m : m;
+            var s = time.getSeconds();
+            s = s < 10 ? '0' + s : s;
+            return h + ':' + m + ':' + s;
+        }
+        console.log(getTime());
+    </script> -->
+
+    <!-- 倒计时 -->
+    <!-- <script>
+        // 核心算法：输入的时间减去现在的时间就是剩余的时间，即是倒计时，但不能拿着时分秒相减
+        function conutDown(time) {
+            var nowTime = +new Date();
+            var inputTime = +new Date(time)
+            var times = (inputTime - nowTime) / 1000;
+            var d = parseInt(times / 60 / 60 / 24);
+            d = d < 10 ? '0' + d : d;
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            var s = parseInt(times % 60);
+            s = s < 10 ? '0' + s : s;
+            return  d + ':' + h + ':' + m + ':' + s;
+        }
+        console.log(conutDown('2021-8-23 18:30:00'));
+        var date = new Date();
+        console.log(date);
+    </script> -->
+
+    
+</body>
+</html>
